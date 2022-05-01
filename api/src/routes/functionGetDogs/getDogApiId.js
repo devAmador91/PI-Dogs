@@ -8,8 +8,11 @@ const getDogApiId = async(id,res) =>{
     const response = await fetch(`${URL}?api_key=${API_KEY}`);
     const jsonDogs = await response.json();
     const foundDogApi = jsonDogs.find((d)=>d.id === parseInt(id));
-    const {image,name,temperament,height} = foundDogApi;
-    dogCharacteristics = {image,name,temperament,height};
+    const {name,temperament,life_span} = foundDogApi;
+    const {url:image} = foundDogApi.image;
+    const {imperial:heightImperial } = foundDogApi.height;
+    const {imperial:weightImperial } = foundDogApi.weight;
+    dogCharacteristics = {image,name,temperament,heightImperial, weightImperial, life_span};
 
     return dogCharacteristics;
 

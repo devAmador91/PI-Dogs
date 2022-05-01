@@ -13,6 +13,8 @@ router.get("/temperaments", async (req, res) => {
     const jsonDogs = await response.json();
     const temperamentsApi = formatTemperament(jsonDogs);
 
+ 
+    
     await Temperament.bulkCreate(temperamentsApi);
 
     const temperamentsBd = await Temperament.findAll({ attributes: ["name"] });

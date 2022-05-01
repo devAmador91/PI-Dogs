@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 require('dotenv').config();
 const {API_KEY} = process.env;
 const URL = 'https://api.thedogapi.com/v1/breeds';
+const structurePaginated = require('../structurePaginated');
 
 const getDogsApi = async(res) =>{
     try {
@@ -9,13 +10,14 @@ const getDogsApi = async(res) =>{
     const jsonDogs = await response.json();
     const dogCharacteristics = jsonDogs.map((d)=>{
         return dog = {
+            id: d.id,
             image: d.image.url,
             name: d.name,
             temperament: d.temperament,
-            height: d.height
+            weight: d.weight
         }
     });
-    return dogCharacteristics;
+    return structurePaginated(dogCharacteristics);
     } catch (error) {
         res.json(error)
     }

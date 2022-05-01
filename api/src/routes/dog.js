@@ -26,6 +26,7 @@ router.get("/dogs", async (req, res) => {
       const dogsBdApi = joinBdApi(dogsApi, dogsBd);
       return res.json(dogsBdApi);
     }
+  
     return res.json(dogsApi);
   }
 
