@@ -9,6 +9,7 @@ export const ContainerAll = styled.div`
   background-color: black;
   padding-top: 10px;
   border-radius: 0px 0px 30px 30px;
+  margin-bottom: 40px;
 `;
 
 export const ContainerLogoSearchBar = styled.div`
@@ -45,13 +46,12 @@ justify-content: space-around;
 `;
 
 export const ContainerUl = styled.ul`
-width: 0%;
+width: 100%;
 height: 30px;
 display: flex;
 justify-content: center;
 margin: 0px;
 padding: 0px;
-background-color: red;
 
 &:hover{
     transition: all 0.3s;
@@ -62,8 +62,10 @@ export const Ul = styled.ul`
 transition: all 0.3s;
 position: absolute;
 top: 30px;
+right: 10px;
 width: 100%;
-
+z-index: 1000;
+opacity: 0;
 `;
 
 export const Link = styled(NavLink)`
@@ -103,7 +105,7 @@ background-color: rgba(0,0,0,0.6);
 
 &:hover{
     cursor: pointer;
-    background-color: rgba(245, 243, 39, 0.69);
+    background-color: #4cd6c3;
     color: black;
     letter-spacing: 2px;
 }

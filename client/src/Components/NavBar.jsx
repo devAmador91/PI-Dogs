@@ -20,16 +20,13 @@ const NavBar = () => {
 
   return (
     <ContainerAll>
-
       <ContainerLogoSearchBar>
-
         <ContainerLogoTitle>
           <Img src={`${logoDog}`} alt="FingerPrint dog"></Img>
           <H1>facedog</H1>
         </ContainerLogoTitle>
 
         <ContainerSearchBar>
-
           <form onSubmit={() => handleSubmit()}>
             <input
               type="search"
@@ -39,67 +36,58 @@ const NavBar = () => {
             />
             <input type={"submit"} value="Search"></input>
           </form>
-
         </ContainerSearchBar>
-
       </ContainerLogoSearchBar>
 
       <ContainerOptions>
-
         <ContainerUl>
           <List>
-          <Link to="#" >Temperaments</Link>
+            <Link to="#">Temperaments</Link>
             <Ul>
-                <Li>Hola</Li>
-                <Li>Hola</Li>
-                <Li>Hola</Li>
-                <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
             </Ul>
           </List>
         </ContainerUl>
 
         <ContainerUl>
           <List>
-          <Link to="#" >Dog created</Link>
+            <Link to="#">Dog created</Link>
             <Ul>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
             </Ul>
           </List>
         </ContainerUl>
 
         <ContainerUl>
           <List>
-            <Link to="#" >Create Dog</Link>
+            <Link to="/createDog">Create Dog</Link>
+            
+          </List>
+        </ContainerUl>
+
+        <ContainerUl>
+          <List>
+            <Link to="#">Order</Link>
             <Ul>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
+              <Li>Hola</Li>
             </Ul>
           </List>
         </ContainerUl>
 
         <ContainerUl>
           <List>
-            <Link to="#" >Order</Link>
-            <Ul>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
-            <Li>Hola</Li>
-            </Ul>
-          </List>
-        </ContainerUl>
-
-        <ContainerUl>
-          <List>
-            <Link to="#" >About</Link>
+            <Link to="#">About</Link>
             <Ul></Ul>
           </List>
         </ContainerUl>
-
       </ContainerOptions>
-
     </ContainerAll>
   );
 };

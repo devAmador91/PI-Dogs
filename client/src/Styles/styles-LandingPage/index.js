@@ -39,8 +39,8 @@ export const FingerPrint = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 93px;
-  height: 101px;
+  width: 89px;
+  height: 105px;
   background-size: cover;
   margin-bottom: 10px;
 

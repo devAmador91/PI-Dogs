@@ -1,13 +1,15 @@
 import { GET_DOGS } from "../Actions";
 import { GET_TEMPERAMENTS } from "../Actions";
+import { CHANGE_PAGE } from "../Actions";
 
 const initialState = {
   allDogs: [],
   allTemperaments: [],
+  paginated:{numPage:0}
 };
 
 const  rootReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case GET_DOGS: {
       return {
         ...state,
@@ -20,6 +22,13 @@ const  rootReducer = (state = initialState, action) => {
         ...state,
         allTemperaments: action.payload,
       };
+    }
+
+    case CHANGE_PAGE: {
+      return {
+        ...state,
+        paginated:{numPage:action.payload}
+      }
     }
 
     default: {
