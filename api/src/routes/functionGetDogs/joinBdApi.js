@@ -1,11 +1,16 @@
 const structurePaginated = require("../structurePaginated");
 
 const joinBdApi = (Bd,Api) =>{
+    
     Bd.map((dog)=>{
-        const {image,name,temperament,height} = dog;
-        Api.unshift({image,name,temperament,height})
+        const {id, img, name, weight } = dog;
+        const temperament = dog.Temperaments.map((t)=>t.dataValues.name).join();
+        Api[0].unshift({id,img,name,temperament,weight});
     });
-    return structurePaginated(Api);
+
+//mandar a estructurar pero con nueva llamada a api
+    
+    return Api
 }
 
 module.exports = joinBdApi;

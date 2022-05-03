@@ -11,10 +11,10 @@ const getDogsApi = async(res) =>{
     const dogCharacteristics = jsonDogs.map((d)=>{
         return dog = {
             id: d.id,
-            image: d.image.url,
+            img: d.image.url,
             name: d.name,
             temperament: d.temperament,
-            weight: d.weight
+            weight: d.weight.imperial
         }
     });
     return structurePaginated(dogCharacteristics);

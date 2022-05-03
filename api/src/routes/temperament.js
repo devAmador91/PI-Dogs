@@ -8,13 +8,19 @@ const { sequelize } = require("../db");
 const { Temperament } = sequelize.models;
 
 router.get("/temperaments", async (req, res) => {
+  
   try {
+    
+    const Bd = await Temperament.findAll({ attributes: ["name"] });
+
+    if(Bd.length){
+      return res.json(Bd);
+    }
+
     const response = await fetch(`${URL}?api_key=${API_KEY}`);
     const jsonDogs = await response.json();
     const temperamentsApi = formatTemperament(jsonDogs);
 
- 
-    
     await Temperament.bulkCreate(temperamentsApi);
 
     const temperamentsBd = await Temperament.findAll({ attributes: ["name"] });

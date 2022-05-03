@@ -1,9 +1,26 @@
 const { sequelize } = require("../../db");
-const { Dog } = sequelize.models;
+const { Dog, Temperament } = sequelize.models;
 
 const getDogBDId = async (id) => {
   try {
-    return await Dog.findByPk(id);
+    const dog = await Dog.findOne({
+      where: { id },
+      include: {
+        model: Temperament,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    });
+
+    
+    const {id, name, height, weight, yearsLife, img } = dog.dataValues;
+          const temperament = dog.dataValues.Temperaments.map((t)=>t.dataValues.name).join();
+    console.log(id, name, height, weight, yearsLife, img, temperament )
+    return {id, name, height, weight, yearsLife, img, temperament};
+
+        
   } catch (error) {
     console.log("Dog not found in Bd");
   }

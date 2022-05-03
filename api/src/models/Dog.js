@@ -15,22 +15,16 @@ module.exports = (sequelize) => {
       },
     },
     height: {
-      type: DataTypes.INTEGER,
-      validate: {
-        isInt: true,
-      },
+      type: DataTypes.STRING,
+      
     },
     weight: {
-      type: DataTypes.INTEGER,
-      validate: {
-        isInt: true,
-      },
+      type: DataTypes.STRING,
+      
     },
     yearsLife: {
-      type: DataTypes.INTEGER,
-      validate: {
-        isInt: true,
-      },
+      type: DataTypes.STRING,
+      
     },
     img:{
       type: DataTypes.STRING,

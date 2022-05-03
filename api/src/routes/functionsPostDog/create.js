@@ -2,6 +2,7 @@ const { sequelize } = require("../../db");
 const { Dog } = sequelize.models;
 
 const create = async (name, height, weight, yearsLife, img) => {
+
   try {
     const [createDog, isCreate] = await Dog.findOrCreate({
       where: {
@@ -15,6 +16,7 @@ const create = async (name, height, weight, yearsLife, img) => {
         img,
       },
     });
+
     return { createDog, isCreate };
   } catch (error) {
     console.error(error);

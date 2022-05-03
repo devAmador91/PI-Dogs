@@ -1,4 +1,5 @@
 const structurePaginated = (dogs) => {
+   
 
     let structure = [];
     let start = 0;
