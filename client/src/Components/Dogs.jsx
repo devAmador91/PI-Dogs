@@ -23,7 +23,7 @@ const Dogs = () => {
             <Dog
               key={dog.id}
               id={dog.id}
-              image={dog.image}
+              image={dog.img}
               name={dog.name}
               temperament={dog.temperament}
               weight={dog.weight}

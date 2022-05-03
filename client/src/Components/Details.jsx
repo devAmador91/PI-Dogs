@@ -24,11 +24,11 @@ const Details = () => {
       <Container>
         <BackGround>
           <H1>{dog.name}</H1>
-          <Img src={dog.image} alt="img of dog"></Img>
+          <Img src={dog.img} alt="img of dog"></Img>
           <P>{dog.temperament}</P>
-          <P>{dog.weightImperial}</P>
-          <P>{dog.heightImperial}</P>
-          <P>{dog.life_span}</P>
+          <P>{dog.weight}</P>
+          <P>{dog.height}</P>
+          <P>{dog.yearsLife}</P>
           <P>{id}</P>
         </BackGround>
       </Container>

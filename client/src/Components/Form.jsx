@@ -11,15 +11,20 @@ import { Img } from "../Styles/Styles-Form";
 import { Label } from "../Styles/Styles-Form";
 import dogDefault from "../Styles/Img/Dog-Default/pug.webp";
 import { Button } from "../Styles/Styles-Form";
+import addTemperament from "./functionForm/addTemperament";
+import deleteTemperament from "./functionForm/deleteTemperament";
+import { DeleteButton } from "../Styles/Styles-Form";
+import handledChange from "./functionForm/handledChange";
+import handledSubmit from "./functionForm/handledSubmit";
+import DogCreated from "./DogCreated";
 
 const Form = () => {
   const [error, setError] = useState({});
+  const [dogCreated, setDog] = useState({});
   const [input, setInput] = useState({
     name: "",
-    heightImperial: 0,
-    heightMetric: 0,
-    weightImperial: 0,
-    weightMetric: 0,
+    height: "",
+    weight: "",
     yearsLife: "",
     temperament: [],
     img: "",
@@ -28,69 +33,107 @@ const Form = () => {
   const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.allTemperaments);
 
+
+
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
-  console.log(temperaments)
-
   return (
-    <React.Fragment>
+   !Object.keys(dogCreated).length ? <React.Fragment>
       <NavBar />
       <Container>
         <ContainerForm>
-        <H1>Create your dog</H1>
+          <H1>Create your dog</H1>
           <ContainerImg>
-            
             <form>
               <ContainerInput>
                 <Label>Name:</Label>
-                <input type="text" name="name" value={input.name}></input>
+                <input
+                  type="text"
+                  name="name"
+                  value={input.name}
+                  placeholder="salchicha"
+                  onChange={(e) => handledChange(e, setInput)}
+                ></input>
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Temperament:</Label>
-                <select name="temperament">
-                  {temperaments.length && temperaments.map((t)=><option key={t.name} value={t.name}></option>)}
+                <select
+                  name="temperament"
+                  onChange={(e) => addTemperament(e, input, setInput)}
+                >
+                  {temperaments.length &&
+                    temperaments.map((t) => (
+                      <option key={t.name} value={t.name}>
+                        {t.name}
+                      </option>
+                    ))}
                 </select>
+                {input.temperament.length
+                  ? input.temperament.map((t) => (
+                      <DeleteButton
+                        key={t}
+                        onClick={(e) => deleteTemperament(e, setInput)}
+                      >
+                        {t}
+                      </DeleteButton>
+                    ))
+                  : null}
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Height Imperial:</Label>
-                <select name="heightImperial"></select>
-              </ContainerInput>
-
-              <ContainerInput>
-                <Label>Height Metric:</Label>
-                <select name="heightMetric"></select>
+                <input
+                  type="text"
+                  name="height"
+                  value={input.height}
+                  placeholder="25-30"
+                  onChange={(e) => handledChange(e, setInput)}
+                ></input>
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Weight Imperial:</Label>
-                <select name="weightImperial"></select>
-              </ContainerInput>
-
-              <ContainerInput>
-                <Label>Weight Metric:</Label>
-                <select name="weightMetric"></select>
+                <input
+                  type="text"
+                  name="weight"
+                  value={input.weight}
+                  placeholder="20-40"
+                  onChange={(e) => handledChange(e, setInput)}
+                ></input>
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Years of life:</Label>
-                <select name="yearsLife"></select>
+                <input
+                  type="text"
+                  name="yearsLife"
+                  value={input.yearsLife}
+                  placeholder="10-12 years"
+                  onChange={(e) => handledChange(e, setInput)}
+                ></input>
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Img:</Label>
-                <input type="text" name="img" value={input.img}></input>
+                <input
+                  type="text"
+                  name="img"
+                  value={input.img}
+                  placeholder="http://imagen.com/perro"
+                  onChange={(e) => handledChange(e, setInput)}
+                ></input>
               </ContainerInput>
             </form>
             <Img src={input.img ? input.img : dogDefault}></Img>
           </ContainerImg>
         </ContainerForm>
-        <Button>Create</Button>
+        <Button onClick={(e) => handledSubmit(e, input, setDog)}>Create</Button>
       </Container>
     </React.Fragment>
+    : <DogCreated dogCreated={dogCreated}/>
   );
 };
 

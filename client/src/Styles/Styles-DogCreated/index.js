@@ -3,24 +3,28 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const ContainerForm = styled.div`
+export const ContainerData = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 20px 10px black;
   border-radius: 30px;
   border: 2px solid black;
-  padding: 15px;
+  padding: 25px;
   margin-top: 30px;
 `;
 
-export const ContainerInput = styled.div`
+export const ContainerForm = styled.div`
+display: flex;
+align-items: center;
+`;
+
+export const ContainerLabel = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -29,8 +33,8 @@ export const ContainerInput = styled.div`
 `;
 
 export const ContainerImg = styled.div`
-  display: flex;
   align-items: center;
+  margin-right: 50px;
 `;
 
 export const H1 = styled.h1`
@@ -41,8 +45,9 @@ export const H1 = styled.h1`
 `;
 
 export const Label = styled.label`
-  font-size: 15px;
+  font-size: 18px;
   color: white;
+  
 `;
 
 export const Img = styled.img`
@@ -51,22 +56,7 @@ export const Img = styled.img`
   border-radius: 30px;
 `;
 
-export const Button = styled.button`
-  width: 50px;
-  color: white;
-  border: 0px;
-  border-radius: 30px;
-  padding: 5px;
-  margin-top: 40px;
-  background-color: black;
-  box-shadow: 1px 1px 20px 10px black;
-  cursor: pointer;
-`;
-
-export const DeleteButton = styled.button`
-  margin: 5px;
-  background-color: #3ee5bd;
-  border-radius: 30px;
-  border: 0px;
-  color: black;
+export const P = styled.p`
+font-size: 13px;
+margin-bottom: 15px;
 `;
