@@ -93,7 +93,6 @@ border: 0px;
 export const Li = styled.li`
 display: flex;
 flex-direction: column;
-
 width: 100%;
 padding: 10px;
 color: white;
@@ -110,4 +109,24 @@ background-color: rgba(0,0,0,0.6);
     letter-spacing: 2px;
 }
 `
+
+export const Temperament = styled.li`
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+padding: 10px;
+color: white;
+letter-spacing: 2px;
+background-color: rgba(0,0,0,0.6);
+&:last-child{
+    border-radius: 0px 0px 50px 50px;
+}
+
+&:hover{
+    cursor: pointer;
+    background-color: #4cd6c3;
+    color: black;
+    letter-spacing: 2px;
+}
+`;
 

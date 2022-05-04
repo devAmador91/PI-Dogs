@@ -70,3 +70,19 @@ export const DeleteButton = styled.button`
   border: 0px;
   color: black;
 `;
+
+export const Input = styled.input`
+border: 0px solid black;
+color: black;
+background-color: white;
+`
+export const Error = styled.p`
+font-size: 12px;
+color: red;
+
+${Input}{
+border: 1px solid red;
+color: red;
+background-color: red;
+}
+`;

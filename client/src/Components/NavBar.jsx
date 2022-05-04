@@ -1,6 +1,6 @@
-import React from "react";
+import { useSelector } from "react-redux";
 import logoDog from "../Styles/Img/Img-Landing-Page/fingerPrint.png";
-import { ContainerAll } from "../Styles/styles-Navbar";
+import { ContainerAll, Temperament } from "../Styles/styles-Navbar";
 import { Img } from "../Styles/styles-Navbar";
 import { ContainerLogoSearchBar } from "../Styles/styles-Navbar";
 import { ContainerLogoTitle } from "../Styles/styles-Navbar";
@@ -14,6 +14,11 @@ import { Ul } from "../Styles/styles-Navbar";
 import { Link } from "../Styles/styles-Navbar";
 
 const NavBar = () => {
+
+  
+  const temperaments = useSelector((state)=>state.allTemperaments);
+  console.log(temperaments)
+
   const handleChange = () => {};
 
   const handleSubmit = () => {};
@@ -44,10 +49,7 @@ const NavBar = () => {
           <List>
             <Link to="#">Temperaments</Link>
             <Ul>
-              <Li>Hola</Li>
-              <Li>Hola</Li>
-              <Li>Hola</Li>
-              <Li>Hola</Li>
+              {temperaments.map((t)=><Temperament key={t.name} value={t.name}>{t.name}</Temperament>)}
             </Ul>
           </List>
         </ContainerUl>

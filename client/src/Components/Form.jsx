@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
-import { useDispatch, useSelector } from "react-redux";
-import { getTemperaments } from "../Actions";
+import { useSelector } from "react-redux";
 import { Container } from "../Styles/Styles-Form";
 import { ContainerForm } from "../Styles/Styles-Form";
 import { ContainerInput } from "../Styles/Styles-Form";
@@ -17,6 +16,8 @@ import { DeleteButton } from "../Styles/Styles-Form";
 import handledChange from "./functionForm/handledChange";
 import handledSubmit from "./functionForm/handledSubmit";
 import DogCreated from "./DogCreated";
+import { Error } from "../Styles/Styles-Form";
+import { Input } from "../Styles/Styles-Form";
 
 const Form = () => {
   const [error, setError] = useState({});
@@ -30,17 +31,10 @@ const Form = () => {
     img: "",
   });
 
-  const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.allTemperaments);
 
-
-
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, [dispatch]);
-
-  return (
-   !Object.keys(dogCreated).length ? <React.Fragment>
+  return !Object.keys(dogCreated).length ? (
+    <React.Fragment>
       <NavBar />
       <Container>
         <ContainerForm>
@@ -54,15 +48,16 @@ const Form = () => {
                   name="name"
                   value={input.name}
                   placeholder="salchicha"
-                  onChange={(e) => handledChange(e, setInput)}
+                  onChange={(e) => handledChange(e, setInput, input, setError)}
                 ></input>
+                {error.name && <Error>{error.name}</Error>}
               </ContainerInput>
 
               <ContainerInput>
                 <Label>Temperament:</Label>
                 <select
                   name="temperament"
-                  onChange={(e) => addTemperament(e, input, setInput)}
+                  onChange={(e) => addTemperament(e, input, setInput, setError)}
                 >
                   {temperaments.length &&
                     temperaments.map((t) => (
@@ -71,11 +66,16 @@ const Form = () => {
                       </option>
                     ))}
                 </select>
+                {!input.temperament.length && error.temperament && (
+                  <Error>{error.temperament}</Error>
+                )}
                 {input.temperament.length
                   ? input.temperament.map((t) => (
                       <DeleteButton
                         key={t}
-                        onClick={(e) => deleteTemperament(e, setInput)}
+                        onClick={(e) =>
+                          deleteTemperament(e, setInput, input, setError)
+                        }
                       >
                         {t}
                       </DeleteButton>
@@ -85,13 +85,14 @@ const Form = () => {
 
               <ContainerInput>
                 <Label>Height Imperial:</Label>
-                <input
+                <Input
                   type="text"
                   name="height"
                   value={input.height}
                   placeholder="25-30"
-                  onChange={(e) => handledChange(e, setInput)}
-                ></input>
+                  onChange={(e) => handledChange(e, setInput, input, setError)}
+                ></Input>
+                {error.height && <Error>{error.height}</Error>}
               </ContainerInput>
 
               <ContainerInput>
@@ -101,8 +102,9 @@ const Form = () => {
                   name="weight"
                   value={input.weight}
                   placeholder="20-40"
-                  onChange={(e) => handledChange(e, setInput)}
+                  onChange={(e) => handledChange(e, setInput, input, setError)}
                 ></input>
+                 {error.weight && <Error>{error.weight}</Error>}
               </ContainerInput>
 
               <ContainerInput>
@@ -112,8 +114,9 @@ const Form = () => {
                   name="yearsLife"
                   value={input.yearsLife}
                   placeholder="10-12 years"
-                  onChange={(e) => handledChange(e, setInput)}
+                  onChange={(e) => handledChange(e, setInput, input, setError)}
                 ></input>
+                {error.yearsLife && <Error>{error.yearsLife}</Error>}
               </ContainerInput>
 
               <ContainerInput>
@@ -123,17 +126,19 @@ const Form = () => {
                   name="img"
                   value={input.img}
                   placeholder="http://imagen.com/perro"
-                  onChange={(e) => handledChange(e, setInput)}
+                  onChange={(e) => handledChange(e, setInput, input, setError)}
                 ></input>
+                {error.img && <Error>{error.img}</Error>}
               </ContainerInput>
             </form>
             <Img src={input.img ? input.img : dogDefault}></Img>
           </ContainerImg>
         </ContainerForm>
-        <Button onClick={(e) => handledSubmit(e, input, setDog)}>Create</Button>
+        {Object.keys(error).length === 0 && <Button onClick={(e) => handledSubmit(e, input, setDog)}>Create</Button>}
       </Container>
     </React.Fragment>
-    : <DogCreated dogCreated={dogCreated}/>
+  ) : (
+    <DogCreated dogCreated={dogCreated} />
   );
 };
 
