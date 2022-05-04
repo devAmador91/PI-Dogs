@@ -13,10 +13,8 @@ const getDogsBd = async (res) => {
       },
     });
 
-    return dog.map((d) => {
-      return ({ id, name, height, weight, yearsLife, img, Temperaments } =
-        d.dataValues);
-    });
+    return dog
+   
   } catch (error) {
     console.log(error);
     res.json(error);

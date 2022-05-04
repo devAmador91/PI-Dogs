@@ -17,7 +17,7 @@ const getDogsApi = async(res) =>{
             weight: d.weight.imperial
         }
     });
-    return structurePaginated(dogCharacteristics);
+    return dogCharacteristics
     } catch (error) {
         res.json(error)
     }

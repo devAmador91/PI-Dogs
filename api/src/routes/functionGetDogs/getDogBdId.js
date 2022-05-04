@@ -14,13 +14,12 @@ const getDogBDId = async (id) => {
       },
     });
 
-    
-    const {id, name, height, weight, yearsLife, img } = dog.dataValues;
-          const temperament = dog.dataValues.Temperaments.map((t)=>t.dataValues.name).join();
-    console.log(id, name, height, weight, yearsLife, img, temperament )
-    return {id, name, height, weight, yearsLife, img, temperament};
+    const { name, height, weight, yearsLife, img } = dog.dataValues;
+    const temperament = dog.dataValues.Temperaments.map(
+      (t) => t.dataValues.name
+    ).join();
 
-        
+    return { id, name, height, weight, yearsLife, img, temperament };
   } catch (error) {
     console.log("Dog not found in Bd");
   }

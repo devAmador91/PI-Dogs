@@ -10,8 +10,7 @@ const validationData = require("./functionsPostDog/validationData.js");
 const validationApi = require("./functionsPostDog/validationApi.js");
 const create = require("./functionsPostDog/create.js");
 const addTemperament = require("./functionsPostDog/addTemperament.js");
-
-
+const structuredPaginated = require("./structurePaginated");
 
 router.get("/dogs", async (req, res) => {
   const { nameQuery } = req.query;
@@ -20,15 +19,17 @@ router.get("/dogs", async (req, res) => {
   const dogsBd = await getDogsBd(res);
   //no query
   if (!nameQuery) {
-    const dogsApi = await getDogsApi(res);
-    if (dogsBd.length) {
-   
-      const dogsBdApi = joinBdApi(dogsBd, dogsApi);
-   
-      return res.json(dogsBdApi);
-    }
 
-    return res.json(dogsApi);
+    const dogsApi = await getDogsApi(res);
+    
+    if (dogsBd.length) {
+      const dogsBdApi = joinBdApi(dogsBd, dogsApi);
+
+      return res.json(structuredPaginated(dogsBdApi));
+    }
+    
+
+    return res.json(structuredPaginated(dogsApi));
   }
 
   //query in Bd
@@ -50,14 +51,10 @@ router.get("/dogs", async (req, res) => {
   res.status(404).json({ msg: "The dog dont exist", error: 404 });
 });
 
-
-
-
 router.get("/dogs/:id", async (req, res) => {
   const { id } = req.params;
 
   const foundDogBd = await getDogBdId(id);
-console.log(foundDogBd)
 
   if (foundDogBd) {
     return res.json(foundDogBd);
@@ -67,22 +64,10 @@ console.log(foundDogBd)
   res.json(foundDogApi);
 });
 
-
-
-
 router.post("/dog", async (req, res) => {
-  const { name, height, weight, yearsLife, temperament, img } =
-    req.body;
+  const { name, height, weight, yearsLife, temperament, img } = req.body;
 
-  validationData(
-    name,
-    height,
-    weight,
-    yearsLife,
-    temperament,
-    img,
-    res
-  );
+  validationData(name, height, weight, yearsLife, temperament, img, res);
 
   validationApi(name, res);
 
