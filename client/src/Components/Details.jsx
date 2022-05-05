@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "./NavBar";
 import { Container } from "../Styles/Styles-Details";
 import { BackGround } from "../Styles/Styles-Details";
 import { H1 } from "../Styles/Styles-Details";
@@ -20,7 +19,6 @@ const Details = () => {
 
   return (
     <React.Fragment>
-      <NavBar />
       <Container>
         <BackGround>
           <H1>{dog.name}</H1>

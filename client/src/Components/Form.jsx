@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "./NavBar";
 import { useSelector } from "react-redux";
 import { Container } from "../Styles/Styles-Form";
 import { ContainerForm } from "../Styles/Styles-Form";
@@ -35,7 +34,6 @@ const Form = () => {
 
   return !Object.keys(dogCreated).length ? (
     <React.Fragment>
-      <NavBar />
       <Container>
         <ContainerForm>
           <H1>Create your dog</H1>

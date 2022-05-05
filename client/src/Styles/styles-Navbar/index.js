@@ -19,7 +19,7 @@ export const ContainerLogoSearchBar = styled.div`
   margin-bottom: 15px;
 `;
 
-export const ContainerLogoTitle = styled.div`
+export const ContainerLogoTitle = styled(NavLink)`
   display: flex;
 `;
 
@@ -66,6 +66,7 @@ right: 10px;
 width: 100%;
 z-index: 1000;
 opacity: 0;
+visibility: hidden;
 `;
 
 export const Link = styled(NavLink)`
@@ -93,6 +94,7 @@ border: 0px;
 export const Li = styled.li`
 display: flex;
 flex-direction: column;
+border: 0px;
 width: 100%;
 padding: 10px;
 color: white;
@@ -110,23 +112,14 @@ background-color: rgba(0,0,0,0.6);
 }
 `
 
-export const Temperament = styled.li`
-display: flex;
-flex-wrap: wrap;
-width: 100%;
-padding: 10px;
+export const Button = styled.button`
 color: white;
-letter-spacing: 2px;
-background-color: rgba(0,0,0,0.6);
-&:last-child{
-    border-radius: 0px 0px 50px 50px;
-}
-
+font-size: 17px;
+background-color: black;
+border: 0px;
+cursor: pointer;
 &:hover{
-    cursor: pointer;
-    background-color: #4cd6c3;
-    color: black;
-    letter-spacing: 2px;
+  color: #4cd6c3;
 }
-`;
+`
 
