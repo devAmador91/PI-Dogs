@@ -18,7 +18,9 @@ import { getDogByName } from "../Actions";
 import { useNavigate } from "react-router-dom";
 import { setDogsTemperament } from "../Actions";
 import { setDogsCreated } from "../Actions";
+import { setDogsFilterAlphabeticalDesc, setDogsFilterAlphabeticalAsc } from "../Actions";
 import { Button } from "../Styles/styles-Navbar";
+import { paginated } from "../Actions";
 
 const NavBar = () => {
   const [input, setInput] = useState({ dog: "" });
@@ -32,8 +34,7 @@ const NavBar = () => {
   }, [dispatch]);
 
   const temperaments = useSelector((state) => state.allTemperaments);
-  const dogs = useSelector((state) => state.allDogs);
-
+  const allDogs = useSelector((state) => state.allDogs);
   const handleChange = (e) => {
     setInput({
       [e.target.name]: e.target.value,
@@ -41,40 +42,43 @@ const NavBar = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); //mandar el input por props a la pagina filter para renderizar la busqueda
-    dispatch(getDogByName(input.dog));
+    e.preventDefault();
+    dispatch(paginated(0));
+    const nameDog = input.dog.charAt(0).toUpperCase() + input.dog.slice(1);
+    dispatch(getDogByName(nameDog));
     navigate("/filter");
   };
 
   const filterTemperaments = (e) => {
     const filteredDogs = [];
-    dogs.forEach((page) =>
-      page.forEach((dog) => {
-        if (dog.temperament) {
-          if (dog.temperament.includes(e.target.textContent)) {
-            filteredDogs.push(dog);
-          }
+    allDogs.forEach((dog) => {
+      if (dog.temperament) {
+        if (dog.temperament.includes(e.target.textContent)) {
+          filteredDogs.push(dog);
         }
-      })
-    );
+      }
+    });
+
     dispatch(setDogsTemperament(filteredDogs));
     navigate("/filter");
   };
 
   const filterDogCreated = () => {
     const filteredDogs = [];
-    dogs.forEach((page) =>
-      page.forEach((dog) => {
-        if (typeof dog.id === "string") {
-          filteredDogs.push(dog);
-        }
-      })
-    );
+
+    allDogs.forEach((dog) => {
+      if (typeof dog.id === "string") {
+        filteredDogs.push(dog);
+      }
+    });
+
+    dispatch(paginated(0));
     dispatch(setDogsCreated(filteredDogs));
     navigate("/filter");
   };
 
-  const filterAlphabeticalAsc = () => {//la api ya esta ordenada alfabeticamente a-Z
+  const filterAlphabeticalAsc = () => {
+    console.log("entre Asc")
     const sortArray = (x, y) => {
       if (x.name < y.name) {
         return -1;
@@ -84,9 +88,31 @@ const NavBar = () => {
       }
       return 0;
     };
-    const filteredDogs = dogs.sort(sortArray);
-    console.log(filteredDogs);
+    const filteredDog = allDogs.sort(sortArray);
+    console.log(filteredDog)
+    dispatch(setDogsFilterAlphabeticalAsc(filteredDog));
+    navigate("/filter");
   };
+
+  const filterAlphabeticalDesc = () => {//no renderiza al da click por segunda vez
+    console.log("entre desc")
+    const sortArray = (x, y) => {
+      if (x.name > y.name) {
+        return -1;
+      }
+      if (x.name < y.name) {
+        return 1;
+      }
+      return 0;
+    };
+    const filteredDog = allDogs.sort(sortArray);
+    dispatch(setDogsFilterAlphabeticalDesc(filteredDog));
+    navigate("/filter");
+  };
+
+  const filterWeight = () => {
+
+  }
 
   return (
     <ContainerAll>
@@ -139,7 +165,7 @@ const NavBar = () => {
             <Link to="#">Order</Link>
             <Ul>
               <Li onClick={() => filterAlphabeticalAsc()}>A-Z</Li>
-              <Li>Z-A</Li>
+              <Li onClick={() => filterAlphabeticalDesc()}>Z-A</Li>
               <Li>Weight</Li>
             </Ul>
           </List>

@@ -1,19 +1,26 @@
+
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import { Container } from "../Styles/Styles-Filter";
 import { BackGround } from "../Styles/Styles-Filter";
 import Dog from "./Dog";
+import structurePaginated from "./structurePaginated";
+
+
 
 const Filter = () => {
   const filter = useSelector((state) => state.filter);
-  console.log(filter);
+  const dogs = structurePaginated(filter);
+  const {numPage} = useSelector((state) => state.paginated);
+
+  console.log(filter)
 
   return (
     <React.Fragment>
       <Container>
         <BackGround>
-          {filter.length &&
-            filter.map((dog,i) => (
+          {dogs.length &&
+            dogs[numPage].map((dog,i) => (
               <Dog
                 key={i}
                 id={dog.id}

@@ -7,8 +7,6 @@ const validate = (input) =>{
         errors.name = "Dog name is invalid";
       }
 
-      console.log(input)
-
       if(!input.height){
         errors.height = "Dog height is required";
       }

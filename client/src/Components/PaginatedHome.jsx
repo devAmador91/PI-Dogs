@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { ContainerPaginated } from "../Styles/Styles-Paginated";
 import { Button } from "../Styles/Styles-Paginated";
 import { paginated } from "../Actions";
+import structurePaginated from "./structurePaginated";
 
-const Paginated = () => {
-  const dogs = useSelector((state) => state.allDogs);
+const PaginatedHome = () => {
+  const allDogs = useSelector((state) => state.allDogs);
+  const dogs = structurePaginated(allDogs);
   const dispatch = useDispatch();
 
   const handlePaginated = (e) => {
@@ -23,4 +25,4 @@ const Paginated = () => {
   );
 };
 
-export default Paginated;
+export default PaginatedHome;

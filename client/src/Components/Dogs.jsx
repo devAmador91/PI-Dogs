@@ -4,11 +4,13 @@ import { Container } from "../Styles/Styles-Dogs";
 import { BackGround } from "../Styles/Styles-Dogs";
 import Dog from "./Dog";
 import { getDogs } from "../Actions";
+import structurePaginated from "./structurePaginated";
 
 
 const Dogs = () => {
   const dispatch = useDispatch();
-  const dogs = useSelector((state) => state.allDogs);
+  const allDogs = useSelector((state) => state.allDogs);
+  const dogs = structurePaginated(allDogs);
   const {numPage} = useSelector((state) => state.paginated);
 
   useEffect(() => {

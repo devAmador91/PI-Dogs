@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "../Styles/Styles-Home";
 import NavBar from "../Components/NavBar";
 import Dogs from "../Components/Dogs";
-import Paginated from "../Components/Paginated";
+import PaginatedHome from "../Components/PaginatedHome";
 
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
     <Container>
       <NavBar/>
       <Dogs/>
-      <Paginated/>
+      <PaginatedHome/>
     </Container>
   );
 };

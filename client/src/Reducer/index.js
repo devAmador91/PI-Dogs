@@ -3,6 +3,8 @@ import { GET_TEMPERAMENTS } from "../Actions";
 import { GET_DOG_BY_FILTER } from "../Actions";
 import { SET_DOGS_TEMPERAMENTS } from "../Actions";
 import { SET_DOGS_CREATED } from "../Actions";
+import { SET_DOGS_ALPHABETICAL_ASC } from "../Actions";
+import { SET_DOGS_ALPHABETICAL_DESC } from "../Actions";
 import { CHANGE_PAGE } from "../Actions";
 
 const initialState = {
@@ -47,6 +49,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
+    }
+
+    case SET_DOGS_ALPHABETICAL_ASC: {
+      console.log("action asc")
+      return {
+        ...state,
+        filter: action.payload
+      }
+    }
+
+    case SET_DOGS_ALPHABETICAL_DESC: {
+      console.log("action desc")
+      return {
+        ...state,
+        filter: action.payload
+      }
     }
 
     case CHANGE_PAGE: {

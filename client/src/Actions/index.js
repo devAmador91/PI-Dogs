@@ -3,6 +3,8 @@ export const GET_TEMPERAMENTS = "GET_ALL_TEMPERAMENTS";
 export const GET_DOG_BY_FILTER = "GET_DOG_BY_FILTER";
 export const SET_DOGS_TEMPERAMENTS = "SET_DOGS_TEMPERAMENTS";
 export const SET_DOGS_CREATED = "SET_DOGS_CREATED";
+export const SET_DOGS_ALPHABETICAL_ASC = "SET_DOGS_ALPHABETICAL_ASC";
+export const SET_DOGS_ALPHABETICAL_DESC = "SET_DOGS_ALPHABETICAL_DESC";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export let url = "http://localhost:3001/";
 
@@ -51,6 +53,20 @@ export const setDogsTemperament = (dogs)=>{
 export const setDogsCreated = (dogs)=>{
   return (dispatch)=>{
     return dispatch({type: SET_DOGS_CREATED, payload: dogs});
+  }
+}
+
+export const setDogsFilterAlphabeticalAsc = (dogs) =>{
+  return (dispatch)=>{
+    console.log("reducer asc")
+    console.log(dogs)
+    return dispatch({type: SET_DOGS_ALPHABETICAL_ASC, payload:dogs})
+  }
+}
+
+export const setDogsFilterAlphabeticalDesc = (dogs) =>{
+  return (dispatch)=>{
+    return dispatch({type: SET_DOGS_ALPHABETICAL_DESC, payload:dogs})
   }
 }
 
