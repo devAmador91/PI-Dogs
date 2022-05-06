@@ -10,7 +10,7 @@ const validationData = require("./functionsPostDog/validationData.js");
 const validationApi = require("./functionsPostDog/validationApi.js");
 const create = require("./functionsPostDog/create.js");
 const addTemperament = require("./functionsPostDog/addTemperament.js");
-const structuredPaginated = require("./structurePaginated");
+
 
 router.get("/dogs", async (req, res) => {
   const { nameQuery } = req.query;
@@ -25,18 +25,18 @@ router.get("/dogs", async (req, res) => {
     if (dogsBd.length) {
       const dogsBdApi = joinBdApi(dogsBd, dogsApi);
 
-      return res.json(structuredPaginated(dogsBdApi));
+      return res.json(dogsBdApi);
     }
     
 
-    return res.json(structuredPaginated(dogsApi));
+    return res.json(dogsApi);
   }
 
   //query in Bd
   if (dogsBd && dogsBd.length) {
     const foundDogBd = getDogsBdQuery(nameQuery, dogsBd);
     if (foundDogBd) {
-      return res.json(foundDogBd);
+      return res.json([foundDogBd]);
     }
   }
 
