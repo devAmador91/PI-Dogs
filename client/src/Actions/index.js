@@ -5,6 +5,7 @@ export const SET_DOGS_TEMPERAMENTS = "SET_DOGS_TEMPERAMENTS";
 export const SET_DOGS_CREATED = "SET_DOGS_CREATED";
 export const SET_DOGS_ALPHABETICAL_ASC = "SET_DOGS_ALPHABETICAL_ASC";
 export const SET_DOGS_ALPHABETICAL_DESC = "SET_DOGS_ALPHABETICAL_DESC";
+export const SET_DOGS_ORDER_WEIGHT = "SET_DOGS_ORDER_WEIGHT";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export let url = "http://localhost:3001/";
 
@@ -58,7 +59,7 @@ export const setDogsCreated = (dogs)=>{
 
 export const setDogsFilterAlphabeticalAsc = (dogs) =>{
   return (dispatch)=>{
-    console.log("reducer asc")
+    console.log("action asc")
     console.log(dogs)
     return dispatch({type: SET_DOGS_ALPHABETICAL_ASC, payload:dogs})
   }
@@ -66,9 +67,18 @@ export const setDogsFilterAlphabeticalAsc = (dogs) =>{
 
 export const setDogsFilterAlphabeticalDesc = (dogs) =>{
   return (dispatch)=>{
+    console.log("action asc")
+    console.log(dogs)
     return dispatch({type: SET_DOGS_ALPHABETICAL_DESC, payload:dogs})
   }
 }
+
+export const setDogsOrderWeight = (dogs) =>{
+  return (dispatch)=>{
+    return dispatch({type: SET_DOGS_ORDER_WEIGHT, payload:dogs})
+  }
+}
+
 
 
 export const paginated = (change) => {

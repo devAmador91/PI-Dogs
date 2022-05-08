@@ -5,6 +5,7 @@ import { SET_DOGS_TEMPERAMENTS } from "../Actions";
 import { SET_DOGS_CREATED } from "../Actions";
 import { SET_DOGS_ALPHABETICAL_ASC } from "../Actions";
 import { SET_DOGS_ALPHABETICAL_DESC } from "../Actions";
+import { SET_DOGS_ORDER_WEIGHT } from "../Actions";
 import { CHANGE_PAGE } from "../Actions";
 
 const initialState = {
@@ -52,7 +53,7 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case SET_DOGS_ALPHABETICAL_ASC: {
-      console.log("action asc")
+      console.log("reducer asc")
       return {
         ...state,
         filter: action.payload
@@ -60,7 +61,14 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case SET_DOGS_ALPHABETICAL_DESC: {
-      console.log("action desc")
+      console.log("reducer desc")
+      return {
+        ...state,
+        filter: action.payload
+      }
+    }
+
+    case SET_DOGS_ORDER_WEIGHT: {
       return {
         ...state,
         filter: action.payload

@@ -18,7 +18,11 @@ import { getDogByName } from "../Actions";
 import { useNavigate } from "react-router-dom";
 import { setDogsTemperament } from "../Actions";
 import { setDogsCreated } from "../Actions";
-import { setDogsFilterAlphabeticalDesc, setDogsFilterAlphabeticalAsc } from "../Actions";
+import {
+  setDogsFilterAlphabeticalDesc,
+  setDogsFilterAlphabeticalAsc,
+} from "../Actions";
+import { setDogsOrderWeight } from "../Actions";
 import { Button } from "../Styles/styles-Navbar";
 import { paginated } from "../Actions";
 
@@ -35,6 +39,7 @@ const NavBar = () => {
 
   const temperaments = useSelector((state) => state.allTemperaments);
   const allDogs = useSelector((state) => state.allDogs);
+
   const handleChange = (e) => {
     setInput({
       [e.target.name]: e.target.value,
@@ -58,7 +63,7 @@ const NavBar = () => {
         }
       }
     });
-
+    dispatch(paginated(0));
     dispatch(setDogsTemperament(filteredDogs));
     navigate("/filter");
   };
@@ -78,7 +83,7 @@ const NavBar = () => {
   };
 
   const filterAlphabeticalAsc = () => {
-    console.log("entre Asc")
+    console.log("entre Asc");
     const sortArray = (x, y) => {
       if (x.name < y.name) {
         return -1;
@@ -88,14 +93,15 @@ const NavBar = () => {
       }
       return 0;
     };
-    const filteredDog = allDogs.sort(sortArray);
-    console.log(filteredDog)
+    let filteredDog = [];
+    allDogs.sort(sortArray).forEach((dog) => filteredDog.push(dog));
+    dispatch(paginated(0));
     dispatch(setDogsFilterAlphabeticalAsc(filteredDog));
     navigate("/filter");
   };
 
-  const filterAlphabeticalDesc = () => {//no renderiza al da click por segunda vez
-    console.log("entre desc")
+  const filterAlphabeticalDesc = () => {
+    console.log("entre desc");
     const sortArray = (x, y) => {
       if (x.name > y.name) {
         return -1;
@@ -105,19 +111,83 @@ const NavBar = () => {
       }
       return 0;
     };
-    const filteredDog = allDogs.sort(sortArray);
+    let filteredDog = [];
+    allDogs.sort(sortArray).forEach((dog) => filteredDog.push(dog));
+    dispatch(paginated(0));
     dispatch(setDogsFilterAlphabeticalDesc(filteredDog));
     navigate("/filter");
   };
 
-  const filterWeight = () => {
+  const filterWeightAsc = () => {
 
+    const orderMin = allDogs.sort((a, b) =>{
+      if(Number(a.weight.split(' ')[0]) < Number(b.weight.split(' ')[0])){
+        return -1;
+      }
+       
+       if(Number(a.weight.split(' ')[0]) > Number(b.weight.split(' ')[0])){
+        return 1;
+      }
+       return 0;
+    })
+    
+    const sortArrayMax = (a, b) =>{
+      if(Number(a.weight.split(' ')[a.weight.split(' ').length-1]) < Number(b.weight.split(' ')[b.weight.split(' ').length-1])){
+        return -1;
+      }
+       
+       if(Number(a.weight.split(' ')[a.weight.split(' ').length-1]) > Number(b.weight.split(' ')[b.weight.split(' ').length-1])){
+        return 1;
+      }
+       return 0;
+    }
+    const orderMax = []
+    orderMin.sort(sortArrayMax).forEach((dog)=> orderMax.push(dog));
+    dispatch(paginated(0));
+    dispatch(setDogsOrderWeight(orderMax));
+    navigate("/filter");
+  };
+
+
+  const filterWeightDesc = () => {
+
+    const orderMin = allDogs.sort((a, b) =>{
+      if(Number(a.weight.split(' ')[0]) > Number(b.weight.split(' ')[0])){
+        return -1;
+      }
+       
+       if(Number(a.weight.split(' ')[0]) < Number(b.weight.split(' ')[0])){
+        return 1;
+      }
+       return 0;
+    })
+
+    const sortArrayMax = (a, b) =>{
+      if(Number(a.weight.split(' ')[a.weight.split(' ').length-1]) > Number(b.weight.split(' ')[b.weight.split(' ').length-1])){
+        return -1;
+      }
+       
+       if(Number(a.weight.split(' ')[a.weight.split(' ').length-1]) < Number(b.weight.split(' ')[b.weight.split(' ').length-1])){
+        return 1;
+      }
+       return 0;
+    }
+    const orderMax = []
+    orderMin.sort(sortArrayMax).forEach((dog)=> orderMax.push(dog));
+    dispatch(paginated(0));
+    dispatch(setDogsOrderWeight(orderMax));
+    navigate("/filter");
+  };
+
+  const returnHome = ()=>{
+    dispatch(paginated(0));
+    navigate("/home")
   }
 
   return (
     <ContainerAll>
       <ContainerLogoSearchBar>
-        <ContainerLogoTitle to={"/home"}>
+        <ContainerLogoTitle onClick={()=>returnHome()}>
           <Img src={`${logoDog}`} alt="FingerPrint dog"></Img>
           <H1>facedog</H1>
         </ContainerLogoTitle>
@@ -166,7 +236,8 @@ const NavBar = () => {
             <Ul>
               <Li onClick={() => filterAlphabeticalAsc()}>A-Z</Li>
               <Li onClick={() => filterAlphabeticalDesc()}>Z-A</Li>
-              <Li>Weight</Li>
+              <Li onClick={() => filterWeightAsc()}>Weight Asc</Li>
+              <Li onClick={() => filterWeightDesc()}>Weight Desc</Li>
             </Ul>
           </List>
         </ContainerUl>

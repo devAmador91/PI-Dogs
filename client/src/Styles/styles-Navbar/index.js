@@ -19,7 +19,8 @@ export const ContainerLogoSearchBar = styled.div`
   margin-bottom: 15px;
 `;
 
-export const ContainerLogoTitle = styled(NavLink)`
+export const ContainerLogoTitle = styled.div`
+cursor: pointer;
   display: flex;
 `;
 
