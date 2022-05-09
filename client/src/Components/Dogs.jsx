@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "../Styles/Styles-Dogs";
-import { BackGround } from "../Styles/Styles-Dogs";
+import { Container, BackGround } from "../Styles/Styles-Dogs";
 import Dog from "./Dog";
 import { getDogs } from "../Actions";
 import structurePaginated from "./structurePaginated";

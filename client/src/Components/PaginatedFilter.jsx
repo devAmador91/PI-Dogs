@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ContainerPaginated } from "../Styles/Styles-Paginated";
-import { Button } from "../Styles/Styles-Paginated";
+import { ContainerPaginated, Button } from "../Styles/Styles-Paginated";
 import { paginated } from "../Actions";
 import structurePaginated from "./structurePaginated";
 

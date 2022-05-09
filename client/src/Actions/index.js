@@ -3,8 +3,8 @@ export const GET_TEMPERAMENTS = "GET_ALL_TEMPERAMENTS";
 export const GET_DOG_BY_FILTER = "GET_DOG_BY_FILTER";
 export const SET_DOGS_TEMPERAMENTS = "SET_DOGS_TEMPERAMENTS";
 export const SET_DOGS_CREATED = "SET_DOGS_CREATED";
-export const SET_DOGS_ALPHABETICAL_ASC = "SET_DOGS_ALPHABETICAL_ASC";
-export const SET_DOGS_ALPHABETICAL_DESC = "SET_DOGS_ALPHABETICAL_DESC";
+export const SET_DOGS_ORDER_ASC = "SET_DOGS_ORDER_ASC";
+export const SET_DOGS_ORDER_DESC = "SET_DOGS_ALPHABETICAL_DESC";
 export const SET_DOGS_ORDER_WEIGHT = "SET_DOGS_ORDER_WEIGHT";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export let url = "http://localhost:3001/";
@@ -36,50 +36,44 @@ export const getTemperaments = () => {
 export const getDogByName = (name) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${url}dogs?nameQuery=${name}`)
+      const response = await fetch(`${url}dogs?nameQuery=${name}`);
       const dogJson = await response.json();
-      return dispatch({type: GET_DOG_BY_FILTER, payload: dogJson });
+      return dispatch({ type: GET_DOG_BY_FILTER, payload: dogJson });
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
-export const setDogsTemperament = (dogs)=>{
-  return (dispatch)=>{
-    return dispatch({type: SET_DOGS_TEMPERAMENTS, payload: dogs});
-  }
-}
+export const setDogsTemperament = (dogs) => {
+  return (dispatch) => {
+    return dispatch({ type: SET_DOGS_TEMPERAMENTS, payload: dogs });
+  };
+};
 
-export const setDogsCreated = (dogs)=>{
-  return (dispatch)=>{
-    return dispatch({type: SET_DOGS_CREATED, payload: dogs});
-  }
-}
+export const setDogsCreated = (dogs) => {
+  return (dispatch) => {
+    return dispatch({ type: SET_DOGS_CREATED, payload: dogs });
+  };
+};
 
-export const setDogsFilterAlphabeticalAsc = (dogs) =>{
-  return (dispatch)=>{
-    console.log("action asc")
-    console.log(dogs)
-    return dispatch({type: SET_DOGS_ALPHABETICAL_ASC, payload:dogs})
-  }
-}
+export const setDogsOrderAsc = (dogs) => {
+  return (dispatch) => {
+    return dispatch({ type: SET_DOGS_ORDER_ASC, payload: dogs });
+  };
+};
 
-export const setDogsFilterAlphabeticalDesc = (dogs) =>{
-  return (dispatch)=>{
-    console.log("action asc")
-    console.log(dogs)
-    return dispatch({type: SET_DOGS_ALPHABETICAL_DESC, payload:dogs})
-  }
-}
+export const setDogsOrderDesc = (dogs) => {
+  return (dispatch) => {
+    return dispatch({ type: SET_DOGS_ORDER_DESC, payload: dogs });
+  };
+};
 
-export const setDogsOrderWeight = (dogs) =>{
-  return (dispatch)=>{
-    return dispatch({type: SET_DOGS_ORDER_WEIGHT, payload:dogs})
-  }
-}
-
-
+export const setDogsOrderWeight = (dogs) => {
+  return (dispatch) => {
+    return dispatch({ type: SET_DOGS_ORDER_WEIGHT, payload: dogs });
+  };
+};
 
 export const paginated = (change) => {
   return (dispatch) => {

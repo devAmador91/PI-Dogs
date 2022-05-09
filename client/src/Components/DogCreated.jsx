@@ -1,16 +1,11 @@
 import React from "react";
-import { Container, Img } from "../Styles/Styles-DogCreated";
-import { ContainerData } from "../Styles/Styles-DogCreated";
-import { ContainerLabel } from "../Styles/Styles-DogCreated";
-import { H1 } from "../Styles/Styles-DogCreated";
-import { ContainerImg } from "../Styles/Styles-DogCreated";
-import { Label } from "../Styles/Styles-DogCreated";
-import { ContainerForm } from "../Styles/Styles-DogCreated";
-import { P } from "../Styles/Styles-DogCreated";
+import { Container, Img, ContainerData, ContainerLabel, H1,
+         ContainerImg, Label, ContainerForm, P } from "../Styles/Styles-DogCreated";
 
-const DogCreated = (props) => {
-  const { name, height, weight, yearsLife, temperament, img } =
-    props.dogCreated;
+const DogCreated = ({dogCreated}) => {
+  const { name, height, weight, yearsLife, temperament, img } = dogCreated;
+
+  //Falta hacer join para traer el temperamento en Express
 
   return (
     <React.Fragment>

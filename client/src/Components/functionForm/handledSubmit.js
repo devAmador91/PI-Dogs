@@ -1,27 +1,30 @@
 import { url } from "../../Actions";
-
-const handledSubmit = async(e, input, setDog) => {
+import validate from "./validationForm";
+const handledSubmit = async (e, input, setDog, setError) => {
   e.preventDefault();
-  const dog = await createDog(input);
-  setDog(dog);
-};
+  setError(validate(input));
+  const error = validate(input);
 
-const createDog = async(input) =>{
+  if (Object.keys(error).length === 0) {
 
     try {
-        const response = await fetch(`${url}dog`, {
-          method: "POST",
-          body: JSON.stringify(input),
-          headers: { "Content-Type": "application/json" },
-        });
-        const {createDog} = await response.json();
+      const response = await fetch(`${url}dog`, {
+        method: "POST",
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json" },
+      });
+      const Dog = await response.json();
 
-        return createDog;
- } catch (error) {
-    console.error(error);
+      if(Dog.hasOwnProperty("error")){
+        setError(validate({...input,existDog:Dog.msg}));
+      }else{
+        setDog(Dog.createDog);
+      }
+      
+    } catch (error) {
+      console.error(error);
+    }
   }
-  }
-
-
+};
 
 export default handledSubmit;

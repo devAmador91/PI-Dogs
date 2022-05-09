@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Container } from "../Styles/Styles-Form";
-import { ContainerForm } from "../Styles/Styles-Form";
-import { ContainerInput } from "../Styles/Styles-Form";
-import { ContainerImg } from "../Styles/Styles-Form";
-import { H1 } from "../Styles/Styles-Form";
-import { Img } from "../Styles/Styles-Form";
-import { Label } from "../Styles/Styles-Form";
+import { Container, ContainerForm, ContainerInput, ContainerImg, H1,
+         Img, Label, Button, DeleteButton, Error, Input   } from "../Styles/Styles-Form";
 import dogDefault from "../Styles/Img/Dog-Default/pug.webp";
-import { Button } from "../Styles/Styles-Form";
 import addTemperament from "./functionForm/addTemperament";
 import deleteTemperament from "./functionForm/deleteTemperament";
-import { DeleteButton } from "../Styles/Styles-Form";
 import handledChange from "./functionForm/handledChange";
 import handledSubmit from "./functionForm/handledSubmit";
 import DogCreated from "./DogCreated";
-import { Error } from "../Styles/Styles-Form";
-import { Input } from "../Styles/Styles-Form";
+
 
 const Form = () => {
   const [error, setError] = useState({});
@@ -29,6 +21,9 @@ const Form = () => {
     temperament: [],
     img: "",
   });
+
+  //Falta hacer las demas validaciones del formulario
+
 
   const temperaments = useSelector((state) => state.allTemperaments);
 
@@ -49,6 +44,7 @@ const Form = () => {
                   onChange={(e) => handledChange(e, setInput, input, setError)}
                 ></input>
                 {error.name && <Error>{error.name}</Error>}
+                {error.existDog && <Error>{error.existDog}</Error>}
               </ContainerInput>
 
               <ContainerInput>
@@ -132,7 +128,7 @@ const Form = () => {
             <Img src={input.img ? input.img : dogDefault}></Img>
           </ContainerImg>
         </ContainerForm>
-        {Object.keys(error).length === 0 && <Button onClick={(e) => handledSubmit(e, input, setDog)}>Create</Button>}
+        {Object.keys(error).length === 0 && <Button onClick={(e) => handledSubmit(e, input, setDog, setError)}>Create</Button>}
       </Container>
     </React.Fragment>
   ) : (

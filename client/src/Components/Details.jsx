@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container } from "../Styles/Styles-Details";
-import { BackGround } from "../Styles/Styles-Details";
-import { H1 } from "../Styles/Styles-Details";
-import { Img } from "../Styles/Styles-Details";
-import { P } from "../Styles/Styles-Details";
+import { getDogId } from "./functionDetails/getDogId";
+import { Container, BackGround, H1, Img, P  } from "../Styles/Styles-Details";
 
 const Details = () => {
   const { id } = useParams();
   const [dog, setDog] = useState({});
 
   useEffect(() => {
-    const getDog = async () => {
-      setDog(await getDogId(id));
-    };
-    getDog();
+    getDogId(id, setDog);
   }, [id]);
 
   return (
@@ -32,12 +26,6 @@ const Details = () => {
       </Container>
     </React.Fragment>
   );
-};
-
-const getDogId = async (id) => {
-  const response = await fetch(`http://localhost:3001/dogs/${id}`);
-  const dogJson = await response.json();
-  return dogJson;
 };
 
 export default Details;
