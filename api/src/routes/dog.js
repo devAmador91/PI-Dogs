@@ -13,58 +13,69 @@ const addTemperament = require("./functionsPostDog/addTemperament.js");
 
 
 router.get("/dogs", async (req, res) => {
-  const { nameQuery } = req.query;
 
-  //get all dogs of Bd
+  const { nameQuery } = req.query;
   const dogsBd = await getDogsBd(res);
+  const dogsApi = await getDogsApi(res);
 
   //no query
   if (!nameQuery) {
-    const dogsApi = await getDogsApi(res);
-
     if (dogsBd.length) {
       const dogsBdApi = joinBdApi(dogsBd, dogsApi);
-
       return res.json(dogsBdApi);
     }
-
     return res.json(dogsApi);
   }
 
   //query in Bd
-  if (dogsBd && dogsBd.length) {
+  if (dogsBd.length) {
     const foundDogBd = getDogsBdQuery(nameQuery, dogsBd);
-    if (foundDogBd) {
-      return res.json([foundDogBd]);
+    if (foundDogBd[0] !== undefined) {
+      const foundDogApi = getDogsQuery(nameQuery, dogsApi);
+      if(foundDogApi){
+        const dogsBdApi = joinBdApi(foundDogBd, foundDogApi);
+        return res.json(dogsBdApi);
+      }
+      return res.json(foundDogBd);
     }
   }
 
   //query in Api
-  const dogsApi = await getDogsApi(res);
   const foundDogApi = getDogsQuery(nameQuery, dogsApi);
-
   if (foundDogApi.length) {
     return res.json(foundDogApi);
   }
 
+  //No results
   res.status(404).json({ msg: "The dog dont exist", error: 404 });
 });
 
+
+
+
 router.get("/dogs/:id", async (req, res) => {
+
   const { id } = req.params;
 
+  //dog in Bd
   const foundDogBd = await getDogBdId(id);
   if (foundDogBd) {
     return res.json(foundDogBd);
   }
 
+  //dog in Api
   const foundDogApi = await getDogApiId(id, res);
   res.json(foundDogApi);
 });
 
+
+
+
 router.post("/dog", async (req, res) => {
+
   const { name, height, weight, yearsLife, temperament, img } = req.body;
 
+  //validations
   validationData(name, height, weight, yearsLife, temperament, img, res);
 
   const foundDog = await validationApi(name, res);
@@ -74,8 +85,10 @@ router.post("/dog", async (req, res) => {
       .json({ msg: "The dog name already exist in the api", error: 400 });
   }
 
+  //Post
   const { createDog, isCreate } = await create( name, height, weight, yearsLife, img );
 
+  //add temperament and join
   if (isCreate) {
     await addTemperament(createDog, temperament);
     const foundDogBd = await getDogBdId(createDog.dataValues.id);
