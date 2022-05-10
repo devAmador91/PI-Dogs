@@ -8,8 +8,8 @@ const addTemperament = async(dog,temperament) => {
             name:temperament
         }
     })
-//hacer join
-    dog.addTemperament(dogTemperament);
+
+    await dog.addTemperament(dogTemperament);
 }
 
 module.exports = addTemperament;

@@ -11,11 +11,13 @@ const validationApi = require("./functionsPostDog/validationApi.js");
 const create = require("./functionsPostDog/create.js");
 const addTemperament = require("./functionsPostDog/addTemperament.js");
 
+
 router.get("/dogs", async (req, res) => {
   const { nameQuery } = req.query;
 
   //get all dogs of Bd
   const dogsBd = await getDogsBd(res);
+
   //no query
   if (!nameQuery) {
     const dogsApi = await getDogsApi(res);
@@ -52,7 +54,6 @@ router.get("/dogs/:id", async (req, res) => {
   const { id } = req.params;
 
   const foundDogBd = await getDogBdId(id);
-
   if (foundDogBd) {
     return res.json(foundDogBd);
   }
@@ -73,17 +74,12 @@ router.post("/dog", async (req, res) => {
       .json({ msg: "The dog name already exist in the api", error: 400 });
   }
 
-  const { createDog, isCreate } = await create(
-    name,
-    height,
-    weight,
-    yearsLife,
-    img
-  );
+  const { createDog, isCreate } = await create( name, height, weight, yearsLife, img );
 
   if (isCreate) {
     await addTemperament(createDog, temperament);
-    return res.json({ msg: "The dog was successfully created", createDog });
+    const foundDogBd = await getDogBdId(createDog.dataValues.id);
+    return res.json({ msg: "The dog was successfully created", foundDogBd });
   }
   res
     .status(400)

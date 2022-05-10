@@ -16,7 +16,7 @@ const create = async (name, height, weight, yearsLife, img) => {
         img,
       },
     });
-
+    
     return { createDog, isCreate };
   } catch (error) {
     console.error(error);
