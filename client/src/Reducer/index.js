@@ -2,6 +2,7 @@ import { GET_DOGS } from "../Actions";
 import { GET_TEMPERAMENTS } from "../Actions";
 import { GET_DOG_BY_NAME } from "../Actions";
 import { GET_DOGS_BY_FILTERS } from "../Actions";
+import { CLEAN_FILTER } from "../Actions";
 import { CHANGE_PAGE } from "../Actions";
 
 const initialState = {
@@ -38,6 +39,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: action.payload,
+      };
+    }
+
+    case CLEAN_FILTER: {
+      return {
+        ...state,
+        filter: action.payload ,
       };
     }
 

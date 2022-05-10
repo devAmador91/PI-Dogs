@@ -6,6 +6,7 @@ import Home from "./Views/Home";
 import DogDetails from "./Views/DogDetails";
 import CreateDog from "./Views/CreateDog";
 import FilterDog from "./Views/FilterDog";
+import PageNotFound from "./Views/PageNotFound";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Route path="/dogs/:id" element={<DogDetails />} />
         <Route path="/createDog" element={<CreateDog />} />
         <Route path="/filter" element={<FilterDog/>} />
+        <Route path="/notFound" element={<PageNotFound/>} />
+        <Route path="/*" element={<PageNotFound/>} />
+        
       </Routes>
     </React.Fragment>
   );

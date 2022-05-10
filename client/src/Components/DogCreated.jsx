@@ -1,13 +1,11 @@
 import React from "react";
 import { Container, Img, ContainerData, ContainerLabel, H1,
          ContainerImg, Label, ContainerForm, P } from "../Styles/Styles-DogCreated";
+import resetValues from "./functionDogCreated/resetValues";
+import { Button } from "../Styles/Styles-Form";
 
-const DogCreated = ({dogCreated}) => {
+const DogCreated = ({dogCreated,setDog, setInput}) => {
   const { name, height, weight, yearsLife, temperament, img } = dogCreated;
-
-  console.log(temperament)
-
-  //Falta hacer join para traer el temperamento en Express
 
   return (
     <React.Fragment>
@@ -36,6 +34,7 @@ const DogCreated = ({dogCreated}) => {
               <Img src={img}></Img>
             </ContainerImg>
           </ContainerForm>
+          <Button onClick={()=>resetValues(setDog,setInput)}>Create Other</Button>
         </ContainerData>
       </Container>
     </React.Fragment>

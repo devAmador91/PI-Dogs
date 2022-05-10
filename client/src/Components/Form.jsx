@@ -33,7 +33,7 @@ const Form = () => {
     <React.Fragment>
       <Container>
         <ContainerForm>
-          <H1>Create your dog</H1>
+          <H1 id="h1">Create your dog</H1>
           <ContainerImg>
             <form>
               <ContainerInput>
@@ -213,14 +213,14 @@ const Form = () => {
           </ContainerImg>
         </ContainerForm>
         {Object.keys(error).length === 0 && (
-          <Button onClick={(e) => handledSubmit(e, input, setDog, setError)}>
+          <Button onClick={(e) =>{ handledSubmit(e, input, setDog, setError);document.getElementById('h1').innerHTML="Loading..."}}>
             Create
           </Button>
         )}
       </Container>
     </React.Fragment>
   ) : (
-    <DogCreated dogCreated={dogCreated} />
+    <DogCreated dogCreated={dogCreated} setDog={setDog} setInput={setInput}/>
   );
 };
 

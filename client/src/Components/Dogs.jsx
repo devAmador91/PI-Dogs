@@ -4,6 +4,7 @@ import { Container, BackGround } from "../Styles/Styles-Dogs";
 import Dog from "./Dog";
 import { getDogs } from "../Actions";
 import structurePaginated from "./structurePaginated";
+import dogLoading from "../Styles/Img/Loading/dog-loading1.gif";
 
 
 const Dogs = () => {
@@ -19,7 +20,7 @@ const Dogs = () => {
   return (
     <Container>
       <BackGround>
-        {dogs.length &&
+        {allDogs.length ? dogs.length &&
           dogs[numPage].map((dog) => (
             <Dog
               key={dog.id}
@@ -29,9 +30,11 @@ const Dogs = () => {
               temperament={dog.temperament}
               weight={dog.weight}
             />
-          ))}
+          )): <img src={dogLoading} alt="loading img"></img>}
+          
       </BackGround>
     </Container>
+    
   );
 };
 

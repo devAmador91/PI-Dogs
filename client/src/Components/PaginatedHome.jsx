@@ -10,6 +10,7 @@ const PaginatedHome = () => {
   const dispatch = useDispatch();
 
   const handlePaginated = (e) => {
+    document.body.scrollIntoView();
     dispatch(paginated(e.target.value));
   };
 
