@@ -5,7 +5,7 @@ export const filterTemperaments = (e, allDogs, dispatch, navigate) => {
   const filteredDogs = [];
   allDogs.forEach((dog) => {
     if (dog.temperament) {
-      if (dog.temperament.includes(e.target.textContent)) {
+      if (dog.temperament.includes(e.target.value)) {
         filteredDogs.push(dog);
       }
     }

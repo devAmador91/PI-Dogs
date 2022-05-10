@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logoDog from "../Styles/Img/Img-Landing-Page/fingerPrint.png";
-import { ContainerAll, Img, ContainerLogoSearchBar, ContainerLogoTitle, ContainerSearchBar, H1, ContainerOptions,
-         ContainerUl, List, Li, Ul, Link, Button } from "../Styles/styles-Navbar";
-import { Error } from "../Styles/Styles-Form"; 
+import {ContainerAll,Img,ContainerLogoSearchBar,ContainerLogoTitle,ContainerSearchBar,H1,ContainerOptions,ContainerUl,
+        List,Li,Ul,Link,Button,Select,Option,} from "../Styles/styles-Navbar";
+import { Error } from "../Styles/Styles-Form";
 import { getTemperaments } from "../Actions";
 import { filterTemperaments } from "./functionsNavBar/filterTemperament";
 import { filterDogCreated } from "./functionsNavBar/filterDogCreated";
@@ -14,7 +14,6 @@ import { filterWeightAsc } from "./functionsNavBar/filterWeightAsc";
 import { filterWeightDesc } from "./functionsNavBar/filterWeightDesc";
 import { returnHome } from "./functionsNavBar/returnHome";
 import { handleChange, handleSubmit } from "./functionsNavBar/handleInput";
-
 
 const NavBar = () => {
   const [input, setInput] = useState({ dog: "" });
@@ -44,37 +43,32 @@ const NavBar = () => {
               placeholder="Bulldog"
               name="dog"
               value={input.dog}
-              onChange={(e) => handleChange(e, setInput,input , setError)}
+              onChange={(e) => handleChange(e, setInput, input, setError)}
             />
             {!error.name && <input type={"submit"} value="Search"></input>}
-             {error.name && <Error>{error.name}</Error>}
+            {error.name && <Error>{error.name}</Error>}
           </form>
-          
         </ContainerSearchBar>
-       
       </ContainerLogoSearchBar>
 
       <ContainerOptions>
         <ContainerUl>
-          <List>
-            <Link to="#">Temperaments</Link>
-            <Ul>
-              {temperaments.map((t, i) => (
-                <Li
-                  onClick={(e) =>
-                    filterTemperaments(e, allDogs, dispatch, navigate)
-                  }
-                  key={i}
-                >
+          <Select
+            onClick={(e) => filterTemperaments(e, allDogs, dispatch, navigate)}
+          >
+            {temperaments.length &&
+              temperaments.map((t) => (
+                <Option key={t.name} value={t.name}>
                   {t.name}
-                </Li>
+                </Option>
               ))}
-            </Ul>
-          </List>
+          </Select>
         </ContainerUl>
 
         <ContainerUl>
-          <Button onClick={() => filterDogCreated(allDogs, dispatch, navigate)}>Dog created</Button>
+          <Button onClick={() => filterDogCreated(allDogs, dispatch, navigate)}>
+            Dog created
+          </Button>
         </ContainerUl>
 
         <ContainerUl>
@@ -87,10 +81,18 @@ const NavBar = () => {
           <List>
             <Link to="#">Order</Link>
             <Ul>
-              <Li onClick={() => filterOrderAsc(allDogs, dispatch, navigate)}>A-Z</Li>
-              <Li onClick={() => filterOrderDesc(allDogs, dispatch, navigate)}>Z-A</Li>
-              <Li onClick={() => filterWeightAsc(allDogs, dispatch, navigate)}>Weight Asc</Li>
-              <Li onClick={() => filterWeightDesc(allDogs, dispatch, navigate)}>Weight Desc</Li>
+              <Li onClick={() => filterOrderAsc(allDogs, dispatch, navigate)}>
+                A-Z
+              </Li>
+              <Li onClick={() => filterOrderDesc(allDogs, dispatch, navigate)}>
+                Z-A
+              </Li>
+              <Li onClick={() => filterWeightAsc(allDogs, dispatch, navigate)}>
+                Weight Asc
+              </Li>
+              <Li onClick={() => filterWeightDesc(allDogs, dispatch, navigate)}>
+                Weight Desc
+              </Li>
             </Ul>
           </List>
         </ContainerUl>

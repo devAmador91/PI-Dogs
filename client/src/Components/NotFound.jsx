@@ -1,17 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { cleanFilter } from "../Actions";
+import { Container, ContainerImg } from "../Styles/Styles-NotFound";
+import { Img } from "../Styles/Styles-NotFound";
+import { H1 } from "../Styles/Styles-NotFound";
+import notFoundImg from "../Styles/Img/NotFoundImg/dogNotFound.png";
 
-export const NotFound = ({error}) => {
-const dispatch = useDispatch();
+export const NotFound = ({ error }) => {
+  const dispatch = useDispatch();
 
-useEffect(()=>{
- dispatch(cleanFilter()); 
-})
+  useEffect(() => {
+    dispatch(cleanFilter());
+  });
   return (
-    <div>
-      <h1>Not found</h1>
-      <p>{error}</p>  
-    </div>
+    <Container>
+      <ContainerImg>
+        <H1>Not Found</H1>
+        <Img src={notFoundImg} />
+      </ContainerImg>
+    </Container>
   );
 };

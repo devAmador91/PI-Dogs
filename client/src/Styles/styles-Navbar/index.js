@@ -124,3 +124,14 @@ cursor: pointer;
 }
 `
 
+export const Select = styled.select`
+background-color: black;
+color:white;
+border: 0px;
+font-size: 17px;
+`
+
+export const Option = styled.option`
+font-size: 12px;
+`
+
