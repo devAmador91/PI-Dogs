@@ -43,7 +43,7 @@ router.get("/dogs", async (req, res) => {
   const dogsApi = await getDogsApi(res);
   const foundDogApi = getDogsQuery(nameQuery, dogsApi);
 
-  if (foundDogApi) {
+  if (foundDogApi.length) {
     return res.json(foundDogApi);
   }
 
