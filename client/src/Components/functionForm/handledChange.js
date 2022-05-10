@@ -6,7 +6,7 @@ const handledChange = (e, setInput, input, setError) => {
       ...input,
       [e.target.name]: e.target.value,
     };
-  });
+  });  
   setError(validate({ ...input, [e.target.name]: e.target.value }));
 };
 

@@ -5,6 +5,8 @@ import { Container, Img, ContainerData, ContainerLabel, H1,
 const DogCreated = ({dogCreated}) => {
   const { name, height, weight, yearsLife, temperament, img } = dogCreated;
 
+  console.log(temperament)
+
   //Falta hacer join para traer el temperamento en Express
 
   return (
@@ -18,7 +20,7 @@ const DogCreated = ({dogCreated}) => {
               <P>{name}</P>
 
               <Label>Temperament:</Label>
-              {temperament && temperament.map((t) => <p>{t}</p>)}
+              <P>{temperament}</P>
 
               <Label>Height Imperial:</Label>
               <P>{height}</P>

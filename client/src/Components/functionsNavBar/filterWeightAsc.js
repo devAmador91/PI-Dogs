@@ -1,4 +1,4 @@
-import { setDogsOrderWeight } from "../../Actions";
+import { getDogByfilters } from "../../Actions";
 import { paginated } from "../../Actions";
 
 export const filterWeightAsc = (allDogs, dispatch, navigate) => {
@@ -32,6 +32,6 @@ export const filterWeightAsc = (allDogs, dispatch, navigate) => {
   const orderMax = [];
   orderMin.sort(sortArrayMax).forEach((dog) => orderMax.push(dog));
   dispatch(paginated(0));
-  dispatch(setDogsOrderWeight(orderMax));
+  dispatch(getDogByfilters(orderMax));
   navigate("/filter");
 };

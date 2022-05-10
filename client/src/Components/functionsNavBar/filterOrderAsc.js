@@ -1,4 +1,4 @@
-import { setDogsOrderAsc } from "../../Actions";
+import { getDogByfilters } from "../../Actions";
 import { paginated } from "../../Actions";
 
 
@@ -15,6 +15,6 @@ export const filterOrderAsc = (allDogs, dispatch, navigate) => {
     let filteredDog = [];
     allDogs.sort(sortArray).forEach((dog) => filteredDog.push(dog));
     dispatch(paginated(0));
-    dispatch(setDogsOrderAsc(filteredDog));
+    dispatch(getDogByfilters(filteredDog));
     navigate("/filter");
   };

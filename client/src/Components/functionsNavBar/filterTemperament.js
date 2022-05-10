@@ -1,4 +1,4 @@
-import { setDogsTemperament } from "../../Actions";
+import { getDogByfilters } from "../../Actions";
 import { paginated } from "../../Actions";
 
 export const filterTemperaments = (e, allDogs, dispatch, navigate) => {
@@ -11,6 +11,6 @@ export const filterTemperaments = (e, allDogs, dispatch, navigate) => {
     }
   });
   dispatch(paginated(0));
-  dispatch(setDogsTemperament(filteredDogs));
+  dispatch(getDogByfilters(filteredDogs));
   navigate("/filter");
 };

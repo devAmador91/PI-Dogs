@@ -1,29 +1,31 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, ContainerForm, ContainerInput, ContainerImg, H1,
-         Img, Label, Button, DeleteButton, Error, Input   } from "../Styles/Styles-Form";
+import { Container,ContainerForm,ContainerInput,ContainerImg,H1,Img,Label,Button,DeleteButton,Error,Input,} from "../Styles/Styles-Form";
 import dogDefault from "../Styles/Img/Dog-Default/pug.webp";
 import addTemperament from "./functionForm/addTemperament";
 import deleteTemperament from "./functionForm/deleteTemperament";
 import handledChange from "./functionForm/handledChange";
 import handledSubmit from "./functionForm/handledSubmit";
+import { concatValues } from "./functionForm/concatValues";
 import DogCreated from "./DogCreated";
-
 
 const Form = () => {
   const [error, setError] = useState({});
   const [dogCreated, setDog] = useState({});
   const [input, setInput] = useState({
     name: "",
+    heightMin: "0",
+    heightMax: "0",
     height: "",
+    weightMin: "0",
+    weightMax: "0",
     weight: "",
+    yearsMin: "0",
+    yearsMax: "0",
     yearsLife: "",
     temperament: [],
     img: "",
   });
-
-  //Falta hacer las demas validaciones del formulario
-
 
   const temperaments = useSelector((state) => state.allTemperaments);
 
@@ -78,39 +80,121 @@ const Form = () => {
               </ContainerInput>
 
               <ContainerInput>
-                <Label>Height Imperial:</Label>
+                <Label>Imperial Height Value Min: {input.heightMin}</Label>
                 <Input
-                  type="text"
-                  name="height"
-                  value={input.height}
-                  placeholder="25-30"
-                  onChange={(e) => handledChange(e, setInput, input, setError)}
+                  type="range"
+                  name="heightMin"
+                  value={input.heightMin}
+                  min="1"
+                  max="80"
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "height",
+                      e.target.value,
+                      input.heightMax
+                    );
+                  }}
                 ></Input>
-                {error.height && <Error>{error.height}</Error>}
+
+                {error.heightMin && <Error>{error.heightMin}</Error>}
+                <Label>Imperial Height Value Max: {input.heightMax}</Label>
+                <Input
+                  type="range"
+                  name="heightMax"
+                  value={input.heightMax}
+                  min={input.heightMin}
+                  max="100"
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "height",
+                      input.heightMin,
+                      e.target.value
+                    );
+                  }}
+                ></Input>
+
+                {error.heightMax && <Error>{error.heightMax}</Error>}
               </ContainerInput>
 
               <ContainerInput>
-                <Label>Weight Imperial:</Label>
+                <Label>Imperial Weight Value Min: {input.weightMin}</Label>
                 <input
-                  type="text"
-                  name="weight"
-                  value={input.weight}
-                  placeholder="20-40"
-                  onChange={(e) => handledChange(e, setInput, input, setError)}
+                  type="range"
+                  name="weightMin"
+                  value={input.weightMin}
+                  min="1"
+                  max="100"
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "weight",
+                      e.target.value,
+                      input.weightMax
+                    );
+                  }}
                 ></input>
-                 {error.weight && <Error>{error.weight}</Error>}
+                {error.weightMin && <Error>{error.weightMin}</Error>}
+                <Label>Imperial Weight Value Max: {input.weightMax}</Label>
+                <input
+                  type="range"
+                  name="weightMax"
+                  value={input.weightMax}
+                  min={input.weightMin}
+                  max="150"
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "weight",
+                      input.weightMin,
+                      e.target.value
+                    );
+                  }}
+                ></input>
+                {error.weightMax && <Error>{error.weightMax}</Error>}
               </ContainerInput>
 
               <ContainerInput>
-                <Label>Years of life:</Label>
+                <Label>Life Year Value Min: {input.yearsMin}</Label>
                 <input
-                  type="text"
-                  name="yearsLife"
-                  value={input.yearsLife}
-                  placeholder="10-12 years"
-                  onChange={(e) => handledChange(e, setInput, input, setError)}
+                  type="range"
+                  name="yearsMin"
+                  value={input.yearsMin}
+                  min="1"
+                  max="100"
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "yearsLife",
+                      e.target.value,
+                      input.yearsMax
+                    );
+                  }}
                 ></input>
-                {error.yearsLife && <Error>{error.yearsLife}</Error>}
+                {error.yearsMin && <Error>{error.yearsMin}</Error>}
+                <Label>Life Year Value Max: {input.yearsMax}</Label>
+                <input
+                  type="range"
+                  name="yearsMax"
+                  value={input.yearsMax}
+                  min={input.yearsMin}
+                  onChange={(e) => {
+                    handledChange(e, setInput, input, setError);
+                    concatValues(
+                      setInput,
+                      "yearsLife",
+                      input.yearsMin,
+                      e.target.value
+                    );
+                  }}
+                ></input>
+                {error.yearsMax && <Error>{error.yearsMax}</Error>}
               </ContainerInput>
 
               <ContainerInput>
@@ -128,7 +212,11 @@ const Form = () => {
             <Img src={input.img ? input.img : dogDefault}></Img>
           </ContainerImg>
         </ContainerForm>
-        {Object.keys(error).length === 0 && <Button onClick={(e) => handledSubmit(e, input, setDog, setError)}>Create</Button>}
+        {Object.keys(error).length === 0 && (
+          <Button onClick={(e) => handledSubmit(e, input, setDog, setError)}>
+            Create
+          </Button>
+        )}
       </Container>
     </React.Fragment>
   ) : (

@@ -1,11 +1,7 @@
 export const GET_DOGS = "GET_ALL_DOGS";
 export const GET_TEMPERAMENTS = "GET_ALL_TEMPERAMENTS";
-export const GET_DOG_BY_FILTER = "GET_DOG_BY_FILTER";
-export const SET_DOGS_TEMPERAMENTS = "SET_DOGS_TEMPERAMENTS";
-export const SET_DOGS_CREATED = "SET_DOGS_CREATED";
-export const SET_DOGS_ORDER_ASC = "SET_DOGS_ORDER_ASC";
-export const SET_DOGS_ORDER_DESC = "SET_DOGS_ALPHABETICAL_DESC";
-export const SET_DOGS_ORDER_WEIGHT = "SET_DOGS_ORDER_WEIGHT";
+export const GET_DOG_BY_NAME = "GET_DOG_BY_NAME";
+export const GET_DOGS_BY_FILTERS = "GET_DOGS_BY_FILTERS";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export let url = "http://localhost:3001/";
 
@@ -38,40 +34,16 @@ export const getDogByName = (name) => {
     try {
       const response = await fetch(`${url}dogs?nameQuery=${name}`);
       const dogJson = await response.json();
-      return dispatch({ type: GET_DOG_BY_FILTER, payload: dogJson });
+      return dispatch({ type: GET_DOG_BY_NAME, payload: dogJson });
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const setDogsTemperament = (dogs) => {
+export const getDogByfilters = (dogs) => {
   return (dispatch) => {
-    return dispatch({ type: SET_DOGS_TEMPERAMENTS, payload: dogs });
-  };
-};
-
-export const setDogsCreated = (dogs) => {
-  return (dispatch) => {
-    return dispatch({ type: SET_DOGS_CREATED, payload: dogs });
-  };
-};
-
-export const setDogsOrderAsc = (dogs) => {
-  return (dispatch) => {
-    return dispatch({ type: SET_DOGS_ORDER_ASC, payload: dogs });
-  };
-};
-
-export const setDogsOrderDesc = (dogs) => {
-  return (dispatch) => {
-    return dispatch({ type: SET_DOGS_ORDER_DESC, payload: dogs });
-  };
-};
-
-export const setDogsOrderWeight = (dogs) => {
-  return (dispatch) => {
-    return dispatch({ type: SET_DOGS_ORDER_WEIGHT, payload: dogs });
+    return dispatch({ type: GET_DOGS_BY_FILTERS, payload: dogs });
   };
 };
 
@@ -80,3 +52,4 @@ export const paginated = (change) => {
     dispatch({ type: CHANGE_PAGE, payload: change });
   };
 };
+

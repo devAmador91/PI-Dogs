@@ -1,11 +1,7 @@
 import { GET_DOGS } from "../Actions";
 import { GET_TEMPERAMENTS } from "../Actions";
-import { GET_DOG_BY_FILTER } from "../Actions";
-import { SET_DOGS_TEMPERAMENTS } from "../Actions";
-import { SET_DOGS_CREATED } from "../Actions";
-import { SET_DOGS_ORDER_ASC } from "../Actions";
-import { SET_DOGS_ORDER_DESC } from "../Actions";
-import { SET_DOGS_ORDER_WEIGHT } from "../Actions";
+import { GET_DOG_BY_NAME } from "../Actions";
+import { GET_DOGS_BY_FILTERS } from "../Actions";
 import { CHANGE_PAGE } from "../Actions";
 
 const initialState = {
@@ -31,46 +27,18 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    case GET_DOG_BY_FILTER: {
+    case GET_DOG_BY_NAME: {
       return {
         ...state,
         filter: action.payload,
       };
     }
 
-    case SET_DOGS_TEMPERAMENTS: {
+    case GET_DOGS_BY_FILTERS: {
       return {
         ...state,
         filter: action.payload,
       };
-    }
-
-    case SET_DOGS_CREATED: {
-      return {
-        ...state,
-        filter: action.payload,
-      };
-    }
-
-    case SET_DOGS_ORDER_ASC: {
-      return {
-        ...state,
-        filter: action.payload
-      }
-    }
-
-    case SET_DOGS_ORDER_DESC: {
-      return {
-        ...state,
-        filter: action.payload
-      }
-    }
-
-    case SET_DOGS_ORDER_WEIGHT: {
-      return {
-        ...state,
-        filter: action.payload
-      }
     }
 
     case CHANGE_PAGE: {

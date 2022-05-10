@@ -1,10 +1,12 @@
 import { getDogByName } from "../../Actions";
 import { paginated } from "../../Actions";
+import validate from "./validationInput";
 
-export const handleChange = (e, setInput) => {
+export const handleChange = (e, setInput, input, setError) => {
   setInput({
     [e.target.name]: e.target.value,
   });
+  setError(validate({...input, [e.target.name]: e.target.value }));
 };
 
 export const handleSubmit = (e, input, navigate, dispatch) => {

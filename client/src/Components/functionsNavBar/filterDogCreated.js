@@ -1,4 +1,4 @@
-import { setDogsCreated } from "../../Actions";
+import { getDogByfilters } from "../../Actions";
 import { paginated } from "../../Actions";
 
 export const filterDogCreated = (allDogs, dispatch, navigate) => {
@@ -11,6 +11,6 @@ export const filterDogCreated = (allDogs, dispatch, navigate) => {
     });
 
     dispatch(paginated(0));
-    dispatch(setDogsCreated(filteredDogs));
+    dispatch(getDogByfilters(filteredDogs));
     navigate("/filter");
   };

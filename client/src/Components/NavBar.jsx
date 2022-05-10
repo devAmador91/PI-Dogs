@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logoDog from "../Styles/Img/Img-Landing-Page/fingerPrint.png";
 import { ContainerAll, Img, ContainerLogoSearchBar, ContainerLogoTitle, ContainerSearchBar, H1, ContainerOptions,
          ContainerUl, List, Li, Ul, Link, Button } from "../Styles/styles-Navbar";
+import { Error } from "../Styles/Styles-Form"; 
 import { getTemperaments } from "../Actions";
 import { filterTemperaments } from "./functionsNavBar/filterTemperament";
 import { filterDogCreated } from "./functionsNavBar/filterDogCreated";
@@ -17,7 +18,7 @@ import { handleChange, handleSubmit } from "./functionsNavBar/handleInput";
 
 const NavBar = () => {
   const [input, setInput] = useState({ dog: "" });
-  //const [error, setError] = useState({});
+  const [error, setError] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,8 +28,6 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
-
-//falta hacer validacion de input NavBar
 
   return (
     <ContainerAll>
@@ -45,11 +44,14 @@ const NavBar = () => {
               placeholder="Bulldog"
               name="dog"
               value={input.dog}
-              onChange={(e) => handleChange(e, setInput)}
+              onChange={(e) => handleChange(e, setInput,input , setError)}
             />
-            <input type={"submit"} value="Search"></input>
+            {!error.name && <input type={"submit"} value="Search"></input>}
+             {error.name && <Error>{error.name}</Error>}
           </form>
+          
         </ContainerSearchBar>
+       
       </ContainerLogoSearchBar>
 
       <ContainerOptions>

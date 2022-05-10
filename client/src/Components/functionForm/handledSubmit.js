@@ -18,7 +18,7 @@ const handledSubmit = async (e, input, setDog, setError) => {
       if(Dog.hasOwnProperty("error")){
         setError(validate({...input,existDog:Dog.msg}));
       }else{
-        setDog(Dog.createDog);
+        setDog(Dog.foundDogBd);
       }
       
     } catch (error) {
