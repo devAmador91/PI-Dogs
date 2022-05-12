@@ -9,10 +9,11 @@ export const Container = styled.div`
 `;
 
 export const ContainerForm = styled.div`
+width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.90);
   box-shadow: 1px 1px 20px 10px black;
   border-radius: 30px;
   border: 2px solid black;
@@ -31,6 +32,7 @@ export const ContainerInput = styled.div`
 export const ContainerImg = styled.div`
   display: flex;
   align-items: center;
+  padding:15px;
 `;
 
 export const H1 = styled.h1`
@@ -43,12 +45,16 @@ export const H1 = styled.h1`
 export const Label = styled.label`
   font-size: 15px;
   color: white;
+  letter-spacing: 1px;
+  text-shadow: 5px 5px 20px white;
+  margin-bottom: 5px;
 `;
 
 export const Img = styled.img`
   width: 250px;
   height: 250px;
   border-radius: 30px;
+  box-shadow: 1px 1px 20px 2px white;
 `;
 
 export const Button = styled.button`

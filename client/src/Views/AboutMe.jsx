@@ -1,16 +1,16 @@
 import React from "react";
-import Form from "../Components/Form";
+import About from "../Components/About";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
-const CreateDog = () => {
+const AboutMe = () => {
   return (
     <React.Fragment>
       <NavBar />
-      <Form />
+      <About />
       <Footer/>
     </React.Fragment>
   );
 };
 
-export default CreateDog;
+export default AboutMe;

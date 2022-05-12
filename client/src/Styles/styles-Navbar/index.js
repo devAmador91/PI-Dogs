@@ -20,12 +20,23 @@ export const ContainerLogoSearchBar = styled.div`
 `;
 
 export const ContainerLogoTitle = styled.div`
-cursor: pointer;
+  cursor: pointer;
   display: flex;
+  &:hover{
+    transition: 300ms;
+    transform: scale(1.1);
+  }
 `;
 
-export const ContainerSearchBar = styled.div`
+export const ContainerSearchBar = styled.div``;
 
+export const Input = styled.input`
+  border-radius: 30px;
+`;
+
+export const InputButton = styled.input`
+  border-radius: 30px;
+  margin-left: 10px;
 `;
 
 export const Img = styled.img`
@@ -42,96 +53,99 @@ export const H1 = styled.h1`
 `;
 
 export const ContainerOptions = styled.div`
-display: flex;
-justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const ContainerUl = styled.ul`
-width: 100%;
-height: 30px;
-display: flex;
-justify-content: center;
-margin: 0px;
-padding: 0px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 
-&:hover{
+  &:hover {
     transition: all 0.3s;
-}
-`; 
+  }
+`;
 
 export const Ul = styled.ul`
-transition: all 0.3s;
-position: absolute;
-top: 30px;
-right: 10px;
-width: 100%;
-z-index: 1000;
-opacity: 0;
-visibility: hidden;
+  transition: all 0.3s;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
 `;
 
 export const Link = styled(NavLink)`
-text-decoration: none;
-color: white;
-font-size: 17px;
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
 `;
 
-
 export const List = styled.button`
-position: relative;
-background-color: black;
-border: 0px;
-&:hover ${Link}{
+  position: relative;
+  background-color: black;
+  border: 0px;
+  &:hover ${Link} {
     color: #4cd6c3;
-}
+  }
 
-&:hover ${Ul}{
+  &:hover ${Ul} {
     opacity: 1;
     visibility: visible;
     z-index: 1001;
-}
+  }
 `;
 
 export const Li = styled.li`
-display: flex;
-flex-direction: column;
-border: 0px;
-width: 100%;
-padding: 10px;
-color: white;
-letter-spacing: 2px;
-background-color: rgba(0,0,0,0.6);
-&:last-child{
+  display: flex;
+  flex-direction: column;
+  border: 0px;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  letter-spacing: 2px;
+  background-color: rgba(0, 0, 0, 0.6);
+  &:last-child {
     border-radius: 0px 0px 50px 50px;
-}
+  }
 
-&:hover{
+  &:hover {
     cursor: pointer;
     background-color: #4cd6c3;
     color: black;
     letter-spacing: 2px;
-}
-`
+  }
+`;
 
 export const Button = styled.button`
-color: white;
-font-size: 17px;
-background-color: black;
-border: 0px;
-cursor: pointer;
-&:hover{
-  color: #4cd6c3;
-}
-`
+  color: white;
+  font-size: 17px;
+  background-color: black;
+  border: 0px;
+  cursor: pointer;
+  &:hover {
+    color: #4cd6c3;
+  }
+`;
 
 export const Select = styled.select`
-background-color: black;
-color:white;
-border: 0px;
-font-size: 17px;
-`
+  background-color: black;
+  color: white;
+  border: 0px;
+  font-size: 17px;
+  text-align: center;
+  &:hover{
+    color: #4cd6c3;
+    cursor: pointer;
+  }
+`;
 
 export const Option = styled.option`
-font-size: 12px;
-`
-
+  font-size: 12px;
+`;

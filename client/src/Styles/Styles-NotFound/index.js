@@ -8,8 +8,8 @@ export const Container = styled.div`
 `;
 
 export const ContainerImg = styled.div`
-  width: 50%;
-  height: 350px;
+  width: 60%;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +29,7 @@ export const Img = styled.img`
   border-radius: 15px;
   border: 1px solid white;
   margin-bottom: 30px;
+  box-shadow: 1px 1px 10px 6px white;
 `;
 
 export const H1 = styled.h1`

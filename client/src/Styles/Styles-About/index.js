@@ -11,7 +11,7 @@ export const ContainerData = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.90);
+  background-color: rgba(0, 0, 0, 0.9);
   box-shadow: 1px 1px 20px 10px black;
   border-radius: 30px;
   border: 2px solid black;
@@ -19,12 +19,12 @@ export const ContainerData = styled.div`
   margin-top: 30px;
 `;
 
-export const ContainerForm = styled.div`
+export const ContainerTech = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const ContainerLabel = styled.div`
+export const ContainerLabel = styled.ul`
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -32,7 +32,16 @@ export const ContainerLabel = styled.div`
   color: white;
 `;
 
+export const Li = styled.li`
+  font-size: 10px;
+  color: white;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 20px white;
+  margin-bottom: 8px;
+`;
+
 export const ContainerImg = styled.div`
+  width: 100%;
   align-items: center;
   margin-right: 50px;
 `;
@@ -42,39 +51,21 @@ export const H1 = styled.h1`
   color: white;
   letter-spacing: 5px;
   text-shadow: 5px 5px 20px white;
-  margin-bottom: 0fr;
-`;
-
-export const Label = styled.label`
-  font-size: 18px;
-  color: white;
-  letter-spacing: 1px;
-  text-shadow: 5px 5px 20px white;
 `;
 
 export const Img = styled.img`
-  width: 250px;
+  width: 290px;
   height: 250px;
   border-radius: 30px;
-  box-shadow: 1px 1px 20px 5px white;
+  margin-right: 30px;
+  margin-top: 30px;
+  box-shadow: 1px 1px 15px black;
 `;
 
-export const P = styled.p`
-  font-size: 14px;
-`;
-
-export const Button = styled.button`
-  width: 60px;
+export const H3 = styled.h3`
+  font-size:12px;
   color: white;
-  border-radius: 20px;
-  padding: 5px;
-  margin-top: 40px;
-  background-color: black;
-  box-shadow: 1px 1px 20px 10px black;
-  cursor: pointer;
-  &:hover{
-    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
-    border: 2px solid #72afd3;
-    color: black;
-  }
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 10px white;
+  margin-bottom: 35px;
 `;

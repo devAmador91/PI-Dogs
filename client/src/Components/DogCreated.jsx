@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Container, Img, ContainerData, ContainerLabel, H1,
-         ContainerImg, Label, ContainerForm, P } from "../Styles/Styles-DogCreated";
+         ContainerImg, Label, ContainerForm, P, Button } from "../Styles/Styles-DogCreated";
 import resetValues from "./functionDogCreated/resetValues";
-import { Button } from "../Styles/Styles-Form";
+import { getDogs } from "../Actions";
 
 const DogCreated = ({dogCreated,setDog, setInput}) => {
   const { name, height, weight, yearsLife, temperament, img } = dogCreated;
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getDogs());
+  },[dispatch])
 
   return (
     <React.Fragment>

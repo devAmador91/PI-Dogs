@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logoDog from "../Styles/Img/Img-Landing-Page/fingerPrint.png";
 import {ContainerAll,Img,ContainerLogoSearchBar,ContainerLogoTitle,ContainerSearchBar,H1,ContainerOptions,ContainerUl,
-        List,Li,Ul,Link,Button,Select,Option,} from "../Styles/styles-Navbar";
+        List,Li,Ul,Link,Select,Option, Input, InputButton} from "../Styles/styles-Navbar";
 import { Error } from "../Styles/Styles-Form";
 import { getTemperaments } from "../Actions";
 import { filterTemperaments } from "./functionsNavBar/filterTemperament";
 import { filterDogCreated } from "./functionsNavBar/filterDogCreated";
+import filterDogApi from "./functionsNavBar/filterDogApi";
 import { filterOrderAsc } from "./functionsNavBar/filterOrderAsc";
 import { filterOrderDesc } from "./functionsNavBar/filterOrderDesc";
 import { filterWeightAsc } from "./functionsNavBar/filterWeightAsc";
@@ -38,14 +39,14 @@ const NavBar = () => {
 
         <ContainerSearchBar>
           <form onSubmit={(e) => handleSubmit(e, input, navigate, dispatch)}>
-            <input
+            <Input
               type="search"
               placeholder="Bulldog"
               name="dog"
               value={input.dog}
               onChange={(e) => handleChange(e, setInput, input, setError)}
             />
-            {!error.name && <input type={"submit"} value="Search"></input>}
+            {!error.name && <InputButton type={"submit"} value="Search"></InputButton>}
             {error.name && <Error>{error.name}</Error>}
           </form>
         </ContainerSearchBar>
@@ -54,7 +55,7 @@ const NavBar = () => {
       <ContainerOptions>
         <ContainerUl>
           <Select
-            onClick={(e) => filterTemperaments(e, allDogs, dispatch, navigate)}
+            onChange={(e) => filterTemperaments(e, allDogs, dispatch, navigate)}
           >
             {temperaments.length &&
               temperaments.map((t) => (
@@ -65,11 +66,23 @@ const NavBar = () => {
           </Select>
         </ContainerUl>
 
+       
+
         <ContainerUl>
-          <Button onClick={() => filterDogCreated(allDogs, dispatch, navigate)}>
-            Dog created
-          </Button>
-        </ContainerUl>
+          <List>
+            <Link to="#">Dogs</Link>
+            <Ul>
+              <Li onClick={() => filterDogCreated(allDogs, dispatch, navigate)}>
+            Dog Bd
+              </Li>
+              <Li onClick={() => filterDogApi(allDogs, dispatch, navigate)}>
+            Dog Api
+              </Li>
+            </Ul>
+          </List>
+        </ContainerUl>        
+
+
 
         <ContainerUl>
           <List>
@@ -99,7 +112,7 @@ const NavBar = () => {
 
         <ContainerUl>
           <List>
-            <Link to="#">About</Link>
+            <Link to="/about">About</Link>
           </List>
         </ContainerUl>
       </ContainerOptions>
