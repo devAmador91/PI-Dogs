@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   sequelize.define('Temperament', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     }
   });
 };

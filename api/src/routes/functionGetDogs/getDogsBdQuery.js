@@ -1,6 +1,6 @@
 
 const getDogBdQuery = (name,bd)=>{
-    return [bd.find((dog)=> dog.name === name)];   
+    return bd.filter((dog)=>dog.name.includes(name));   
 }
 
 module.exports = getDogBdQuery;
