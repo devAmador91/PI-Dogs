@@ -1,4 +1,5 @@
-import { url } from "../../Actions";
+import { urlLocal } from "../../Actions";
+import { urlBack } from "../../Actions";
 import validate from "./validationForm";
 const handledSubmit = async (e, input, setDog, setError) => {
   e.preventDefault();
@@ -8,7 +9,7 @@ const handledSubmit = async (e, input, setDog, setError) => {
   if (Object.keys(error).length === 0) {
 
     try {
-      const response = await fetch(`${url}dog`, {
+      const response = await fetch(`${urlBack || urlLocal}dog`, {
         method: "POST",
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json" },

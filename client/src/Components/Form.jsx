@@ -26,6 +26,7 @@ const Form = () => {
     temperament: [],
     img: "",
   });
+  console.log(input)
 
   const temperaments = useSelector((state) => state.allTemperaments);
 

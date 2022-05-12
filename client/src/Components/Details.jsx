@@ -34,6 +34,7 @@ const Details = () => {
 
             <ContainerImg>
               <Img src={dog.img}></Img>
+ 
             </ContainerImg>
           </ContainerForm>
         </ContainerData>
@@ -42,5 +43,6 @@ const Details = () => {
   );
 
 };
+
 
 export default Details;
