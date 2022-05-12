@@ -13,7 +13,7 @@ const getDogsApi = async(res) =>{
             img: d.image.url,
             name: d.name,
             temperament: d.temperament,
-            weight: d.weight.imperial
+            weight: d.weight.imperial,
         }
     });
     return dogCharacteristics

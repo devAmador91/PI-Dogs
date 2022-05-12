@@ -18,14 +18,23 @@ module.exports = (sequelize) => {
     height: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        is: /^([0-9])([0-9])\s([-])\s([0-9])([0-9])/
+      }
     },
     weight: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        is: /^([0-9])([0-9])\s([-])\s([0-9])([0-9])/
+      }
     },
     yearsLife: {
       type: DataTypes.STRING,
       allowNull: true,
+      validate:{
+        is: /^([0-9])([0-9])\s([-])\s([0-9])([0-9])/
+      }
     },
     img:{
       type: DataTypes.STRING,

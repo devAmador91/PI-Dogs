@@ -10,6 +10,8 @@ const validationData = require("./functionsPostDog/validationData.js");
 const validationApi = require("./functionsPostDog/validationApi.js");
 const create = require("./functionsPostDog/create.js");
 const addTemperament = require("./functionsPostDog/addTemperament.js");
+const { sequelize } = require("../db");
+const { Dog } = sequelize.models;
 
 
 router.get("/dogs", async (req, res) => {
@@ -98,5 +100,6 @@ router.post("/dog", async (req, res) => {
     .status(400)
     .json({ msg: "The dog name already exists in the database", error: 400 });
 });
+
 
 module.exports = router;
