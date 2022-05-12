@@ -8,7 +8,7 @@ const { sequelize } = require("../db");
 const { Temperament } = sequelize.models;
 
 router.get("/temperaments", async (req, res) => {
-  
+  //sdfd
   try {
     
     const Bd = await Temperament.findAll({ attributes: ["name"] });
